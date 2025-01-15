@@ -1,16 +1,16 @@
 ---
 layout: page
-title: submenus
+title: 中文
 nav: true
 nav_order: 8
 dropdown: true
 children:
-  - title: publications
+  - title: 首页
     permalink: /publications/
   - title: divider
-  - title: projects
+  - title: 简历
     permalink: /projects/
   - title: divider
-  - title: blog
+  - title: 科研介绍
     permalink: /blog/
 ---
