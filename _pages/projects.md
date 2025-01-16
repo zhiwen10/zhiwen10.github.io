@@ -1,65 +1,62 @@
 ---
 layout: page
-title: projects
+title: research
 permalink: /projects/
-description: A growing collection of your cool projects.
+description:
 nav: true
-nav_order: 3
+nav_order: 2
 display_categories: [work, fun]
-horizontal: false
+horizontal: true
 ---
 
-<!-- pages/projects.md -->
-<div class="projects">
-{% if site.enable_project_categories and page.display_categories %}
-  <!-- Display categorized projects -->
-  {% for category in page.display_categories %}
-  <a id="{{ category }}" href=".#{{ category }}">
-    <h2 class="category">{{ category }}</h2>
-  </a>
-  {% assign categorized_projects = site.projects | where: "category", category %}
-  {% assign sorted_projects = categorized_projects | sort: "importance" %}
-  <!-- Generate cards for each project -->
-  {% if page.horizontal %}
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
+
+## Brain-Wide Coordination of Neural Dynamics
+
+
+Distributed brain dynamics emerge from the coordinated activity of millions to billions of individual neurons on a global scale. 
+
+* How do neurons work together to orchestrate global neural dynamics? 
+
+* How do different neural circuits causally influence global dynamics? 
+
+* What are the functional implications of brain-wide activity coordination for behavior and learning? 
+
+To answer these questions, I study the mouse brain using advanced tools and methods, including widefield calcium imaging, high-density Neuropixels probes, and complex cognitive behavior tasks.
+
+
+
+### Cortex-Wide Neural Dynamics During Rest and Behavior
+
+
+Neural activity across different brain regions often reflects the activation of various body parts during active behavior or memory replay during rest states. Population-level neural activity frequently exhibits dynamic patterns, such as wave like phenomena reminiscent of eddies and turbulent flow in water or atmospheric systems. These intricate brain dynamics are effectively captured by widefield calcium imaging.
+
+By integrating insights from axonal connectivity across brain regions, we can identify the underlying rules and principles governing the spatial and temporal propagation of these wave dynamics. Furthermore, investigating cortex-wide dynamics during decision-making tasks provides valuable insights into their functional roles in cognition and behavior.
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/illustration2a.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% endfor %}
+</div>
+<div class="caption">
+    
+</div>
 
-{% else %}
 
-<!-- Display projects without categories -->
 
-{% assign sorted_projects = site.projects | sort: "importance" %}
+### Single-Neuron Activity and Population Neural Dynamics
 
-  <!-- Generate cards for each project -->
 
-{% if page.horizontal %}
 
-  <div class="container">
-    <div class="row row-cols-1 row-cols-md-2">
-    {% for project in sorted_projects %}
-      {% include projects_horizontal.liquid %}
-    {% endfor %}
+Neuronal activity from subcortical brain regions, such as thalamus, midbrain and neuromodulatory systems, plays a critical role in shaping cortex-wide dynamics. To investigate the relationship between single-neuron activity and population dynamics, we use high-density silicon probes to record neural activity from hundreds of neurons simultaneously, while monitoring cortex-wide neural dynamics with widefield imaging. 
+
+Neuropixels Ultra/HD probes that I and my collaborators developed, are well-suited for densely sampling single-neuron activity within a specified brain region. By combining these recordings with optogenetic techniques, we can isolate the contributions of specific cells types that coordinate and modulate cortex-wide neural dynamics. 
+
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/illustration2b.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
-  </div>
-  {% else %}
-  <div class="row row-cols-1 row-cols-md-3">
-    {% for project in sorted_projects %}
-      {% include projects.liquid %}
-    {% endfor %}
-  </div>
-  {% endif %}
-{% endif %}
+</div>
+<div class="caption">
+    
 </div>

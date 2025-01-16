@@ -6,10 +6,10 @@ nav_order: 8
 dropdown: true
 children:
   - title: 首页
-    permalink: /publications/
+    permalink: /about2/
   - title: divider
   - title: 简历
-    permalink: /projects/
+    permalink: /cv2/
   - title: divider
   - title: 科研介绍
     permalink: /blog/
