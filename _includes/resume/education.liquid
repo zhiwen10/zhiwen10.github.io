@@ -1,3 +1,6 @@
+<td class="card-title font-weight-bold" style="font-size: 3.0rem">
+  <b>{{ "Education"| capitalize }}</b>
+</td>
 <ul class="card-text font-weight-light list-group list-group-flush">
   {% assign education = data[1] | sort: 'startDate' | reverse %}
   {% for content in education %}

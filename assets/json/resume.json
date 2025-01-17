@@ -1,17 +1,9 @@
 {
   "basics": {
     "name": "Zhiwen Ye",
-    "Title": "Acting Assistant Professor",
-    "image": "",
+    "image": "/prof_pic.jpg",
     "email": "yezhiwen@uw.edu",
-    "url": "https://yezhiwen.com",
-    "profiles": [
-      {
-        "network": "Twitter",
-        "username": "AlbertEinstein",
-        "url": "https://twitter.com/AlbertEinstein"
-      }
-    ]
+    "website": "https://yezhiwen.com"
   },
   "work": [
     {
