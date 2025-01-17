@@ -1,5 +1,5 @@
 ---
-layout: about
+layout: about2
 title: 首页
 permalink: /about2/
 subtitle: <a href='#'>  </a>
