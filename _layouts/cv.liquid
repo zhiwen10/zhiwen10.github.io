@@ -78,6 +78,8 @@ layout: default
     </header>
 
     <article>
+      {{ content }}
+      
       <div class="cv">
         {% for data in site.data.resume %}
           {% if site.jsonresume and site.jsonresume.size > 0 %}
