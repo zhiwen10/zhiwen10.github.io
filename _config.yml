@@ -640,6 +640,7 @@ jsonresume:
   - work
   - education
   - publications
+  - other publications
   - projects
   - volunteer
   - awards
@@ -656,6 +657,7 @@ jsonresume2:
   - work
   - education
   - publications
+  - other publications
   - projects
   - volunteer
   - awards
