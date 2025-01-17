@@ -12,5 +12,5 @@ children:
     permalink: /cv2/
   - title: divider
   - title: 科研介绍
-    permalink: /blog/
+    permalink: /projects2/
 ---

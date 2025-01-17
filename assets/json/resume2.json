@@ -1,8 +1,8 @@
 {
   "basics": {
     "姓名": "叶智文",
-    "职位": "Acting Assistant Professor",
-    "image": "",
+    "职位": " 代助理教授",
+    "image": "prof_pic.jpg",
     "邮箱": "yezhiwen@uw.edu",
     "个人网站": "https://yezhiwen.com",
     "profiles": [
@@ -15,51 +15,51 @@
   },
   "work": [
     {
-      "name": "西雅图大学, Seattle, US",
-      "position": "Acting Assistant Professor",
+      "name": "华盛顿大学，西雅图，美国",
+      "position": "代助理教授",
       "startDate": "2023",
       "endDate": "now"
     },
     {
-      "name": "University of Washington, Seattle, US",
-      "position": "Acting Instructor",
+      "name": "华盛顿大学，西雅图，美国",
+      "position": "代理导师",
       "startDate": "2020",
       "endDate": "2022"
     },
     {
-      "name": "the Francis Crick Institute, London, UK",
-      "position": "Postdoctoral Training Fellow",
+      "name": "克里克研究所，伦敦，英国",
+      "position": "博士后研究员",
       "startDate": "2016",
       "endDate": "2019"
     },
     {
-      "name": "Imperial College London, London, UK",
-      "position": "Research Associate",
+      "name": "伦敦帝国理工学院，伦敦，英国",
+      "position": "研究员",
       "startDate": "2014",
       "endDate": "2015"
     }
   ],
   "education": [
     {
-      "institution": "Faculty of Natural Sciences, Imperial College London",
-      "location": "London, UK",
-      "area": "Neuroscience",
-      "studyType": "PhD",
+      "institution": "自然科学院，伦敦帝国理工学院，伦敦，英国",
+      "location": "伦敦，英国",
+      "area": "神经学",
+      "studyType": "博士",
       "startDate": "2010",
       "endDate": "2014"
     },
     {
-      "institution": "Harbin Institute of Technology",
-      "location": "Harbin, China",
-      "area": "Life Sciences",
-      "studyType": "BA",
+      "institution": "哈尔滨工业大学，哈尔滨，中国",
+      "location": "哈尔滨，中国",
+      "area": "生命科学",
+      "studyType": "学士",
       "startDate": "2006",
       "endDate": "2010"
     }
   ],
   "awards": [
     {
-      "title": "UK-China Scholarship for Excellence",
+      "title": "中英杰出人才奖学金",
       "date": "2010-2014"
     }
   ],
