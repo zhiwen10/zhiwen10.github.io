@@ -70,14 +70,16 @@
       "publisher": "bioRxiv",
       "releaseDate": "2023",
       "url": "https://www.biorxiv.org/content/10.1101/2023.12.07.570517v2",
-      "summary": "Ye Z, Bull MS, Li A, Birman D, Daigle TL, Tasic B, Zeng H,  Steinmetz NA"
+      "summary": "Ye Z, Bull MS, Li A, Birman D, Daigle TL, Tasic B, Zeng H,  Steinmetz NA",
+      "links": "<a href='https://github.com/zhiwen10/YE-et-al-2023-spirals'>[代码]</a>  &emsp; <a href='https://doi.org/10.6084/m9.figshare.27850707.v1'>[数据]</a>"
     },
     {
       "name": "Ultra-high density electrodes improve detection, yield, and cell type specificity of brain recordings",
       "publisher": "bioRxiv",
       "releaseDate": "2023",
       "url": "https://www.biorxiv.org/content/10.1101/2023.08.23.554527v3",
-      "summary": "Ye Z*, Shelton AM*, Shaker JR, Boussard J, Colonell J, Birman D, Manavi S, Chen S, Windolf C, Hurwitz C, Namima T, Pedraja F, Weiss S, Raducanu B, Ness TV, Jia X, Mastroberardino G, Rossi LF, Carandini M, Häusser M, Einevoll GT, Laurent G, Sawtell NB, Bair W, Pasupathy A, Lopez CM, Dutta B, Paninski L, Siegle JH, Koch C, Olsen SR, Harris TD, Steinmetz NA."
+      "summary": "Ye Z*, Shelton AM*, Shaker JR, Boussard J, Colonell J, Birman D, Manavi S, Chen S, Windolf C, Hurwitz C, Namima T, Pedraja F, Weiss S, Raducanu B, Ness TV, Jia X, Mastroberardino G, Rossi LF, Carandini M, Häusser M, Einevoll GT, Laurent G, Sawtell NB, Bair W, Pasupathy A, Lopez CM, Dutta B, Paninski L, Siegle JH, Koch C, Olsen SR, Harris TD, Steinmetz NA.",
+      "links": "<a href='https://doi.org/10.6084/m9.figshare.19493588.v2'>[数据]</a>  &emsp; <a href='https://npultra.steinmetzlab.net'>[网站]</a>"
     },
     {
       "name": "Quantitative analysis of rabies virus-based synaptic connectivity tracing",
