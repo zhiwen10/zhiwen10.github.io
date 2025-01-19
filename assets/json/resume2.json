@@ -60,7 +60,8 @@
   "awards": [
     {
       "title": "中英杰出人才奖学金",
-      "date": "2010-2014"
+      "startDate": "2010",
+      "endDate": "2014"
     }
   ],
   "publications": [
