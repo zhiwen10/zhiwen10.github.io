@@ -26,30 +26,58 @@
         <!-- Social Icons -->
         <div class="navbar-brand social">{% include social.liquid %}</div>
       {% endif %}
-      <!-- Navbar Toggle -->
-      <button
-        class="navbar-toggler collapsed ml-auto"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar top-bar"></span>
-        <span class="icon-bar middle-bar"></span>
-        <span class="icon-bar bottom-bar"></span>
-      </button>
+
+      {% assign cur_lang = page.lang | default: 'en' %}
+      {% assign other_lang = 'zh' %}
+      {% if cur_lang == 'zh' %}
+        {% assign other_lang = 'en' %}
+      {% endif %}
+
+      <!-- Language toggle: jumps to the sibling of the current page (same lang_ref, other lang) -->
+      {% assign lang_toggle_url = null %}
+      {% if page.lang_ref %}
+        {% for p in site.pages %}
+          {% assign p_lang = p.lang | default: 'en' %}
+          {% if p.lang_ref == page.lang_ref and p_lang == other_lang %}
+            {% assign lang_toggle_url = p.url %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if lang_toggle_url == null %}
+        {% for p in site.pages %}
+          {% assign p_lang = p.lang | default: 'en' %}
+          {% if p.lang_ref == 'home' and p_lang == other_lang %}
+            {% assign lang_toggle_url = p.url %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% assign lang_label = 'EN' %}
+      {% if other_lang == 'zh' %}
+        {% assign lang_label = '中文' %}
+      {% endif %}
+
+      <div class="mobile-nav-controls ml-auto">
+        <a class="nav-link lang-toggle-btn mobile-lang-toggle" href="{{ lang_toggle_url | relative_url }}">{{ lang_label }}</a>
+
+        <!-- Navbar Toggle -->
+        <button
+          class="navbar-toggler collapsed"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar top-bar"></span>
+          <span class="icon-bar middle-bar"></span>
+          <span class="icon-bar bottom-bar"></span>
+        </button>
+      </div>
 
       <div class="collapse navbar-collapse text-right" id="navbarNav">
         <ul class="navbar-nav ml-auto flex-nowrap">
-          {% assign cur_lang = page.lang | default: 'en' %}
-          {% assign other_lang = 'zh' %}
-          {% if cur_lang == 'zh' %}
-            {% assign other_lang = 'en' %}
-          {% endif %}
-
           <!-- Pages, filtered to the current page's language -->
           {% assign sorted_pages = site.pages | sort: 'nav_order' %}
           {% for p in sorted_pages %}
@@ -82,29 +110,7 @@
             {% endif %}
           {% endfor %}
 
-          <!-- Language toggle: jumps to the sibling of the current page (same lang_ref, other lang) -->
-          {% assign lang_toggle_url = null %}
-          {% if page.lang_ref %}
-            {% for p in site.pages %}
-              {% assign p_lang = p.lang | default: 'en' %}
-              {% if p.lang_ref == page.lang_ref and p_lang == other_lang %}
-                {% assign lang_toggle_url = p.url %}
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-          {% if lang_toggle_url == null %}
-            {% for p in site.pages %}
-              {% assign p_lang = p.lang | default: 'en' %}
-              {% if p.lang_ref == 'home' and p_lang == other_lang %}
-                {% assign lang_toggle_url = p.url %}
-              {% endif %}
-            {% endfor %}
-          {% endif %}
-          {% assign lang_label = 'EN' %}
-          {% if other_lang == 'zh' %}
-            {% assign lang_label = '中文' %}
-          {% endif %}
-          <li class="nav-item lang-toggle-item">
+          <li class="nav-item lang-toggle-item desktop-lang-toggle">
             <a class="nav-link lang-toggle-btn" href="{{ lang_toggle_url | relative_url }}">{{ lang_label }}</a>
           </li>
           {% if site.search_enabled %}

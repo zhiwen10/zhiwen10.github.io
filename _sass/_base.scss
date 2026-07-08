@@ -2,6 +2,11 @@
  * Styles for the base elements of the theme.
  ******************************************************************************/
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 // Typography
 
 p,
@@ -443,6 +448,38 @@ ul.task-list input[type="checkbox"] {
       }
     }
   }
+
+  .mobile-nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .mobile-lang-toggle {
+      padding: 0.3rem 0.9rem;
+      border: 1px solid var(--global-text-color-light);
+      border-radius: 999px;
+      font-size: 0.85rem;
+      line-height: 1.2;
+      color: var(--global-text-color-light);
+
+      &:hover {
+        border-color: var(--global-theme-color);
+        color: var(--global-hover-color);
+      }
+    }
+
+    @media (min-width: 576px) {
+      .mobile-lang-toggle {
+        display: none;
+      }
+    }
+  }
+
+  @media (max-width: 575.98px) {
+    .navbar-nav .nav-item.lang-toggle-item.desktop-lang-toggle {
+      display: none;
+    }
+  }
 }
 
 .navbar-toggler {
@@ -501,25 +538,26 @@ ul.task-list input[type="checkbox"] {
 
 .social {
   text-align: center;
+  margin-top: 4rem;
 
   .contact-icons {
-    font-size: 4rem;
+    font-size: 2rem;
 
     a {
       img {
-        width: 3.2rem;
-        height: 3.2rem;
-        margin-bottom: 1rem;
+        width: 1.6rem;
+        height: 1.6rem;
+        margin-bottom: 0.5rem;
       }
 
       svg {
-        width: 3.5rem;
-        height: 4rem;
-        margin-bottom: 0.5rem;
+        width: 1.75rem;
+        height: 2rem;
+        margin-bottom: 0.25rem;
 
         image {
-          width: 3.5rem;
-          height: 3.5rem;
+          width: 1.75rem;
+          height: 1.75rem;
         }
       }
 
