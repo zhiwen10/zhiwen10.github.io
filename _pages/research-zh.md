@@ -1,9 +1,11 @@
 ---
 layout: page2
-title: 科研介绍
-permalink: /projects2/
+title: 科研
+permalink: /research-zh/
+lang: zh
+lang_ref: research
 description:
-nav: false
+nav: true
 nav_order: 2
 display_categories: [work, fun]
 horizontal: true

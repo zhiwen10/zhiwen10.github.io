@@ -107,10 +107,6 @@ layout: default
                   {% include resume/awards2.liquid %}
                 {% when 'skills' %}
                   {% include resume/skills.liquid %}
-                {% when 'publications' %}
-                  {% include resume/publications2.liquid %}
-                {% when 'other publications' %}
-                  {% include resume/other_publications2.liquid %}
                 {% when 'languages' %}
                   {% include resume/languages.liquid %}
                 {% when 'interests' %}
@@ -125,6 +121,22 @@ layout: default
             </div>
           </div>
         {% endfor %}
+
+        <a class="anchor" id="publications"></a>
+        <div class="card mt-3 p-3">
+          <h3 class="card-title font-weight-medium"></h3>
+          <div>
+            {% include resume/publications2.liquid %}
+          </div>
+        </div>
+
+        <a class="anchor" id="other-publications"></a>
+        <div class="card mt-3 p-3">
+          <h3 class="card-title font-weight-medium"></h3>
+          <div>
+            {% include resume/other_publications2.liquid %}
+          </div>
+        </div>
       </div>
     </article>
   </div>

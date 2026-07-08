@@ -1,7 +1,9 @@
 ---
 layout: page2
-title: research
-permalink: /projects/
+title: Research
+permalink: /research/
+lang: en
+lang_ref: research
 description:
 nav: true
 nav_order: 2
