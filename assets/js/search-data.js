@@ -3,48 +3,69 @@ const ninja = document.querySelector('ninja-keys');
 
 // add the home and posts menu items
 ninja.data = [{
-    id: "nav-about",
-    title: "about",
+    id: "nav-home",
+    title: "Home",
     section: "Navigation",
     handler: () => {
       window.location.href = "/";
     },
-  },{id: "nav-research",
-          title: "research",
+  },{id: "nav-首页",
+          title: "首页",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/projects/";
+            window.location.href = "/home-zh/";
           },
-        },{id: "nav-cv",
-          title: "cv",
+        },{id: "nav-home",
+          title: "Home",
           description: "",
           section: "Navigation",
           handler: () => {
-            window.location.href = "/cv/";
+            window.location.href = "/";
           },
-        },{id: "dropdown-首页",
-              title: "首页",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "";
-              },
-            },{id: "dropdown-简历",
-              title: "简历",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "";
-              },
-            },{id: "dropdown-科研介绍",
-              title: "科研介绍",
-              description: "",
-              section: "Dropdown",
-              handler: () => {
-                window.location.href = "";
-              },
-            },{id: "post-a-post-with-image-galleries",
+        },{id: "nav-科研",
+          title: "科研",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/research-zh/";
+          },
+        },{id: "nav-research",
+          title: "Research",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/research/";
+          },
+        },{id: "nav-团队",
+          title: "团队",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/team-zh/";
+          },
+        },{id: "nav-team",
+          title: "Team",
+          description: "",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/team/";
+          },
+        },{id: "nav-成果",
+          title: "成果",
+          description: "*代表共同第一作者，†代表共同通讯作者。",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications-zh/";
+          },
+        },{id: "nav-publications",
+          title: "Publications",
+          description: "* co-first author &amp;nbsp;&amp;nbsp; † co-corresponding author",
+          section: "Navigation",
+          handler: () => {
+            window.location.href = "/publications/";
+          },
+        },{id: "post-a-post-with-image-galleries",
       
         title: "a post with image galleries",
       
