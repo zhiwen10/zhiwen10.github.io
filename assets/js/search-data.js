@@ -417,16 +417,11 @@ ninja.data = [{
           window.location.href = "/blog/2015/formatting-and-links/";
         
       },
-    },{id: "news-a-simple-inline-announcement",
-          title: 'A simple inline announcement.',
+    },{id: "news-叶智文实验室将于2026年7月20日正式成立",
+          title: '🎉 叶智文实验室将于2026年7月20日正式成立！🎉',
           description: "",
-          section: "News",},{id: "news-a-long-announcement-with-details",
-          title: 'A long announcement with details',
-          description: "",
-          section: "News",handler: () => {
-              window.location.href = "/news/announcement_2/";
-            },},{id: "news-a-simple-inline-announcement-with-markdown-emoji-sparkles-smile",
-          title: 'A simple inline announcement with Markdown emoji! :sparkles: :smile:',
+          section: "News",},{id: "news-ye-lab-is-opening-on-july-20-2026",
+          title: '🎉 Ye Lab is opening on July 20, 2026! 🎉',
           description: "",
           section: "News",},{id: "projects-project-1",
           title: 'project 1',
