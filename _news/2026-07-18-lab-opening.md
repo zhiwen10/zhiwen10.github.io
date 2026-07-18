@@ -6,4 +6,4 @@ related_posts: false
 lang: en
 ---
 
-🎉 Ye Lab is opening on July 20, 2026! 🎉
+🎉 Ye Lab is opening at the Institute of Neuromodulation and Cognition (INC), SMART, on July 20, 2026! 🎉

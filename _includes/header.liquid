@@ -3,27 +3,7 @@
   <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}" role="navigation">
     <div class="container">
       {% assign cur_lang = page.lang | default: 'en' %}
-      {% if page.lang_ref != 'home' %}
-        <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
-          {% if site.title == 'blank' %}
-            {% if site.first_name %}
-              <span class="font-weight-bold">
-                {{- -}}
-              </span>
-            {% endif %}
-            {% if site.middle_name %}
-              {{- site.middle_name -}}
-            {% endif %}
-            {% if site.last_name %}
-              <span class="font-weight-bold">
-                {{- -}}
-              </span>
-            {% endif %}
-          {% else %}
-            {{- site.title -}}
-          {% endif %}
-        </a>
-      {% else %}
+      {% if page.lang_ref == 'home' %}
         <!-- SMART logo -->
         <a class="navbar-brand smart-logo" href="https://smart.org.cn" target="_blank" rel="noopener noreferrer">
           {% if cur_lang == 'zh' %}

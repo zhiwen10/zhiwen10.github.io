@@ -14,15 +14,27 @@ horizontal: true
 
 ## **Brain-Wide Coordination of Neural Dynamics**
 <br>
-Distributed brain dynamics emerge from the coordinated activity of millions to billions of individual neurons on a global scale. 
+Neural oscillations and traveling waves are increasingly recognized as active mechanisms of neural coding, not mere byproducts, yet their causal role in sensorimotor processing still lacks direct behavioral evidence. Our discovery of brain-wide rotating waves (Science, 2026) opens a new path. Building on it, my lab pursues three directions:
 
-* How do neurons work together to orchestrate global neural dynamics? 
+* **Recording** brain-wide sensorimotor dynamics with multi-probe electrophysiology
 
-* How do different neural circuits causally influence global dynamics? 
+* **Decoding** the functional logic of rotating waves
 
-* What are the functional implications of brain-wide activity coordination for behavior and learning? 
+* **Manipulating** neural dynamics through neuromodulatory gating
 
-To answer these questions, I study the mouse brain using advanced tools and methods, including widefield calcium imaging, high-density Neuropixels probes, and complex cognitive behavior tasks.
+We study the mouse brain with state-of-the-art tools, including whole-brain calcium imaging, high-density extracellular recording probes, and complex cognitive behavioral tasks.
+<br>
+<br>
+
+<div class="row">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.liquid loading="eager" path="assets/img/illustration1.png" title="example image" class="img-fluid rounded z-depth-1" %}
+    </div>
+</div>
+<div class="caption">
+    
+</div>
+
 <br>
 <br>
 

@@ -262,8 +262,11 @@ ul.task-list input[type="checkbox"] {
       font-size: 1.25rem;
       font-weight: 700;
 
-      a {
-        color: var(--global-text-color);
+      .cv-link {
+        margin-left: 0.4rem;
+        font-size: 1.25rem;
+        font-weight: 400;
+        color: var(--global-text-color-light);
         text-decoration: underline;
 
         &:hover {
@@ -309,6 +312,36 @@ ul.task-list input[type="checkbox"] {
         margin-right: 0.35rem;
       }
     }
+  }
+}
+
+.recruitment-notice {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid $blue-color;
+  background-color: var(--global-card-bg-color);
+  border-radius: 0 8px 8px 0;
+
+  p {
+    margin-bottom: 0.75rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  a {
+    color: $blue-color;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--global-hover-color);
+    }
+  }
+
+  i {
+    margin-right: 0.35rem;
   }
 }
 
