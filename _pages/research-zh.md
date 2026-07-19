@@ -49,16 +49,16 @@ horizontal: true
 #### **静息与行为状态下的全皮层神经动态**
 
 <br>
-不同脑区的神经活动反表征行为过程中身体各部位的激活，或者在静息状态下的记忆重现。全脑神经活动通常呈现出动态模式，类似于水流或大气系统中的漩涡和湍流现象的波动。这些复杂的脑动态可以通过广域脑钙成像有效捕捉。
+不同脑区的神经活动表征行为过程中身体各部位的激活，或者在静息状态下的记忆重现。全脑神经活动通常呈现出动态模式，类似于水流或大气系统中的漩涡和湍流现象的波动。这些复杂的脑动态可以通过广域脑钙成像有效捕捉。
 
-通过整合脑区间神经细胞轴突连接的相关信息，我们可以识别并总结这些脑波动态传播的基本规则和原理。此外，研究决策任务过程中的全皮层动态模式，可以启示我们其在认知和行为中的功能角色。
+通过整合多模态的群体神经电活动，我们可以识别并总结这些脑波动态传播的基本规则和原理。此外，研究决策任务过程中的全皮层动态模式，可以启示我们其在认知和行为中的功能角色。
 
 <br>
 <br>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/illustration2a.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/rotating_waves_ch.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -81,7 +81,7 @@ horizontal: true
 <br>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/illustration2b.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/multi_probe_ch.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">

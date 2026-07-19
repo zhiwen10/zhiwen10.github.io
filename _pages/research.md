@@ -40,15 +40,15 @@ We study the mouse brain with state-of-the-art tools, including whole-brain calc
 
 #### **Cortex-Wide Neural Dynamics During Rest and Behavior**
 <br>
-Neural activity across different brain regions often reflects the activation of various body parts during active behavior or memory replay during rest states. Population-level neural activity frequently exhibits dynamic patterns, such as wave like phenomena reminiscent of eddies and turbulent flow in water or atmospheric systems. These intricate brain dynamics are effectively captured by widefield calcium imaging.
+Neural activity across different brain regions often reflects the activation of various body parts during active behavior or memory replay during rest states. Population-level neural activity frequently exhibits dynamic patterns, such as wave-like phenomena reminiscent of eddies and turbulent flow in water or atmospheric systems. These intricate brain dynamics are effectively captured by widefield calcium imaging.
 
-By integrating insights from axonal connectivity across brain regions, we can identify the underlying rules and principles governing the spatial and temporal propagation of these wave dynamics. Furthermore, investigating cortex-wide dynamics during decision-making tasks provides valuable insights into their functional roles in cognition and behavior.
+By integrating insights across different modalities of population neuronal activity, we can identify the underlying rules and principles governing the spatial and temporal propagation of these wave dynamics. Furthermore, investigating cortex-wide dynamics during decision-making tasks provides valuable insights into their functional roles in cognition and behavior.
 <br>
 <br>
 
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/illustration2a.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/rotating_waves_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -68,7 +68,7 @@ Neuropixels Ultra/HD probes that I and my collaborators developed, are well-suit
 <br>
 <div class="row">
     <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/illustration2b.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="eager" path="assets/img/multi_probe_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">

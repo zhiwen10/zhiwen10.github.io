@@ -8,12 +8,6 @@ nav: true
 nav_order: 1
 subtitle: 脑动力学实验室 — 从工具，到解码，再到调控。
 
-profile:
-  align: right
-  image: mouse_drawing.png
-  image_circular: false # crops the image to make it circular
-  more_info: >
-
 news: true # includes a list of news items
 selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
@@ -23,7 +17,11 @@ social: true # includes social icons at the bottom of the page
 
 叶智文课题组遵循一条清晰的研究主线，以揭示大脑的组织原理：从工具，到解码，再到调控。我们致力于将新一代电生理记录技术、计算分析与干预手段有机结合，从"观测"全脑尺度的神经活动，迈向"理解"乃至最终"塑造"大脑。
 
-
+<div class="row mt-4">
+  <div class="col-12">
+    {% include figure.liquid loading="eager" path="assets/img/front_page_ch.png" title="记录装置与神经信号" class="img-fluid rounded z-depth-1" %}
+  </div>
+</div>
 
 我们聚焦以下三个研究方向：
 {: .section-lead }
