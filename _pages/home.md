@@ -13,15 +13,21 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Understanding how the brain works is one of the defining scientific challenges of our time. With rapid advances in large-scale recording and artificial intelligence, neuroscience now stands at the edge of major breakthroughs. 
+<div class="row align-items-center mt-3">
+  <div class="col-md-6" markdown="1">
+
+Understanding how the brain works is one of the defining scientific challenges of our time. With rapid advances in large-scale recording and artificial intelligence, neuroscience now stands at the edge of major breakthroughs.
 
 The Ye Lab follows a simple line of inquiry to uncover the brain's organizing principles: from tools, to decoding, to manipulation. By coupling new recording technologies with computational analysis and causal perturbation, we aim to progress from observing brain-wide neural activity to understanding and ultimately shaping the brain.
 
-<div class="row mt-4">
-  <div class="col-12">
+  </div>
+  <div class="col-md-6">
     {% include figure.liquid loading="eager" path="assets/img/front_page_en.png" title="Recording setup and neural signals" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+
+<div class="row mt-4">
+  <div class="col-12" markdown="1">
 
 We focus on three directions:
 {: .section-lead }
@@ -34,4 +40,7 @@ We focus on three directions:
 
 (3) <i class="ti ti-bolt"></i> **Circuit Manipulation:** manipulating brain circuits causally to test mechanistic hypotheses and inform the treatment of brain disorders.
 {: .focus-line }
+
+  </div>
+</div>
 

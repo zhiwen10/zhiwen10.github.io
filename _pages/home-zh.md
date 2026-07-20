@@ -13,15 +13,21 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
+<div class="row align-items-center mt-3">
+  <div class="col-md-6" markdown="1">
+
 理解大脑如何运作，是当今世界面临的根本性科学挑战之一。随着大规模神经记录技术与人工智能的快速发展，神经科学正站在重大突破的前沿。
 
 叶智文课题组遵循一条清晰的研究主线，以揭示大脑的组织原理：从工具，到解码，再到调控。我们致力于将新一代电生理记录技术、计算分析与干预手段有机结合，从"观测"全脑尺度的神经活动，迈向"理解"乃至最终"塑造"大脑。
 
-<div class="row mt-4">
-  <div class="col-12">
+  </div>
+  <div class="col-md-6">
     {% include figure.liquid loading="eager" path="assets/img/front_page_ch.png" title="记录装置与神经信号" class="img-fluid rounded z-depth-1" %}
   </div>
 </div>
+
+<div class="row mt-4">
+  <div class="col-12" markdown="1">
 
 我们聚焦以下三个研究方向：
 {: .section-lead }
@@ -35,4 +41,6 @@ social: true # includes social icons at the bottom of the page
 （3）<i class="ti ti-bolt"></i> **环路操控：** 对脑环路进行因果性操控，以检验机制性假设，并为脑疾病的治疗提供依据。
 {: .focus-line }
 
+  </div>
+</div>
 
