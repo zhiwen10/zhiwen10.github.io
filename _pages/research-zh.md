@@ -34,7 +34,7 @@ horizontal: true
 <br>
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/illustration1-zh.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -57,7 +57,7 @@ horizontal: true
 <br>
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/rotating_waves_ch.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -80,7 +80,7 @@ horizontal: true
 <br>
 <br>
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/multi_probe_ch.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>

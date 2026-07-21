@@ -27,7 +27,7 @@ We study the mouse brain with state-of-the-art tools, including whole-brain calc
 <br>
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/illustration1.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -47,7 +47,7 @@ By integrating insights across different modalities of population neuronal activ
 <br>
 
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/rotating_waves_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
@@ -67,7 +67,7 @@ Neuropixels Ultra/HD probes that I and my collaborators developed, are well-suit
 <br>
 <br>
 <div class="row">
-    <div class="col-sm mt-3 mt-md-0">
+    <div class="col-sm-8 mx-auto mt-3 mt-md-0">
         {% include figure.liquid loading="eager" path="assets/img/multi_probe_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
