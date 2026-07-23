@@ -37,6 +37,11 @@ $black-color: #000000 !default;
 $code-bg-color-light: rgba($purple-color, 0.05);
 $code-bg-color-dark: #2c3237 !default;
 
+// Font families
+$font-family-sans-serif: Arial, "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft YaHei", "Hiragino Sans GB", "Heiti SC", sans-serif !default;
+$font-family-serif: Georgia, "Times New Roman", serif !default;
+$font-family-monospace: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", Menlo, Monaco, Consolas, monospace !default;
+
 // Font awesome location
 $fa-font-path: "../webfonts";
 
