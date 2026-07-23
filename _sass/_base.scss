@@ -7,18 +7,8 @@ body {
   overflow-x: hidden;
 }
 
-// Responsive base font-size scaling (matching smart.org.cn)
-html {
-  font-size: 16px;
-  @media (max-width: 1800px) { font-size: 15px; }
-  @media (max-width: 1681px) { font-size: 14px; }
-  @media (max-width: 1367px) { font-size: 12px; }
-  @media (max-width: 1025px) { font-size: 10px; }
-}
-
 body {
   font-family: $font-family-sans-serif;
-  line-height: 1.5;
 }
 
 // Typography
