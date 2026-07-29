@@ -77,10 +77,10 @@ ninja.data = [{
           section: "News",},{id: "news-welcome-visiting-student-sicheng-lai-from-ucl-joining-the-lab-for-the-summer",
           title: '🎉🎉Welcome visiting student Sicheng Lai from UCL joining the lab for the summer....',
           description: "",
-          section: "News",},{id: "news-欢迎研究助理殷伟伟加入实验室-此前为清华大学郭增才实验室研究助理",
-          title: '🎉🎉欢迎研究助理殷伟伟加入实验室，此前为清华大学郭增才实验室研究助理。',
+          section: "News",},{id: "news-欢迎研究助理殷伟伟加入实验室-此前为清华大学郭增才教授实验室研究助理",
+          title: '🎉🎉欢迎研究助理殷伟伟加入实验室，此前为清华大学郭增才教授实验室研究助理。',
           description: "",
-          section: "News",},{id: "news-welcome-research-assistant-weiwei-yin-joining-the-lab-previously-a-research-assistant-from-the-lab-of-zengcai-guo-from-tsinghua-university",
+          section: "News",},{id: "news-welcome-research-assistant-weiwei-yin-joining-the-lab-previously-a-research-assistant-from-the-lab-of-prof-zengcai-guo-from-tsinghua-university",
           title: '🎉🎉Welcome Research Assistant Weiwei Yin joining the lab, previously a Research Assistant from...',
           description: "",
           section: "News",},{
