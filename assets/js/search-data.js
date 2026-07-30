@@ -66,7 +66,7 @@ ninja.data = [{
             window.location.href = "/publications/";
           },
         },{id: "news-叶智文实验室将于2026年7月20日在深圳医学科学院-smart-神经调控与认知研究所-inc-正式成立",
-          title: '🎉 叶智文实验室将于2026年7月20日在深圳医学科学院（SMART）神经调控与认知研究所（INC）正式成立！🎉',
+          title: '🎉🎉叶智文实验室将于2026年7月20日在深圳医学科学院（SMART）神经调控与认知研究所（INC）正式成立！',
           description: "",
           section: "News",},{id: "news-ye-lab-is-opening-at-the-institute-of-neuromodulation-and-cognition-inc-smart-on-july-20-2026",
           title: '🎉🎉Ye Lab is opening at the Institute of Neuromodulation and Cognition (INC), SMART,...',
@@ -80,8 +80,8 @@ ninja.data = [{
           section: "News",},{id: "news-欢迎研究助理殷伟伟加入实验室-此前为清华大学郭增才教授实验室研究助理",
           title: '🎉🎉欢迎研究助理殷伟伟加入实验室，此前为清华大学郭增才教授实验室研究助理。',
           description: "",
-          section: "News",},{id: "news-welcome-research-assistant-weiwei-yin-joining-the-lab-previously-a-research-assistant-from-the-lab-of-prof-zengcai-guo-from-tsinghua-university",
-          title: '🎉🎉Welcome Research Assistant Weiwei Yin joining the lab, previously a Research Assistant from...',
+          section: "News",},{id: "news-welcome-weiwei-yin-who-joins-the-lab-as-a-research-assistant-weiwei-previously-worked-as-a-research-assistant-in-prof-zengcai-guo-s-lab-at-tsinghua-university",
+          title: '🎉🎉Welcome Weiwei Yin, who joins the lab as a Research Assistant. Weiwei previously...',
           description: "",
           section: "News",},{
         id: 'social-github',
