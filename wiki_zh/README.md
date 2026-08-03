@@ -2,7 +2,7 @@
 
 欢迎来到 YeLab wiki — 实验室的中央知识库。
 
-> 托管于 Gitee：https://edu.gitee.com/ye-lab/yelab-wiki
+> 托管于 Gitee：https://gitee.com/ye-lab/yelab-wiki
 
 ## 实验室
 
@@ -74,7 +74,7 @@
 **站点**
 
 - 英文：**https://www.yezhiwen.com/wiki/**
-- 中文：**https://www.yezhiwen.com/wiki_zh/** — 由本仓库翻译而来，存放于 [yelab-wiki-zh](https://edu.gitee.com/ye-lab/yelab-wiki-zh)
+- 中文：**https://www.yezhiwen.com/wiki_zh/** — 由本仓库翻译而来，存放于 [yelab-wiki-zh](https://gitee.com/ye-lab/yelab-wiki-zh)
 - 二者均对搜索引擎不可见（`robots.txt` + `noindex` meta）。
 
 **编辑**
@@ -89,6 +89,6 @@
 
 **翻译**（`.github/workflows/translate-wiki.yml`）
 
-每 30 分钟，第二个 Action 会将本仓库与上次同步的提交（记录在两侧的 `.translation-sync` 中）进行比对，使用 Kimi API (`kimi-k2.6`) 将新增和修改的页面翻译成中文，同步删除操作，并推送到 [yelab-wiki-zh](https://edu.gitee.com/ye-lab/yelab-wiki-zh) —— 随后发布流程会将其同步到 `/wiki_zh/`。端到端来看，一次英文编辑大约在 45 分钟内到达中文站点。两个工作流均可从网站仓库的 Actions 标签页手动触发。
+每 30 分钟，第二个 Action 会将本仓库与上次同步的提交（记录在两侧的 `.translation-sync` 中）进行比对，使用 Kimi API (`kimi-k2.6`) 将新增和修改的页面翻译成中文，同步删除操作，并推送到 [yelab-wiki-zh](https://gitee.com/ye-lab/yelab-wiki-zh) —— 随后发布流程会将其同步到 `/wiki_zh/`。端到端来看，一次英文编辑大约在 45 分钟内到达中文站点。两个工作流均可从网站仓库的 Actions 标签页手动触发。
 
 翻译为机器生成：请在方便时浏览 `Auto-translate` 提交的差异，并直接在中文仓库中修正错误（修正会持续有效，直到对应的英文页面再次更改）。

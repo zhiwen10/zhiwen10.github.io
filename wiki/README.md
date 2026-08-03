@@ -2,7 +2,7 @@
 
 Welcome to the YeLab wiki — the lab's central knowledge base.
 
-> Hosted on Gitee: https://edu.gitee.com/ye-lab/yelab-wiki
+> Hosted on Gitee: https://gitee.com/ye-lab/yelab-wiki
 
 ## The Lab
 
