@@ -96,14 +96,38 @@ def main():
         changed = git(EN_DIR, "diff", "--name-status", f"{baseline}..HEAD",
                       "--", "*.md").splitlines()
         todo = {(s[0], s[1]) for line in changed if (s := line.split("\t"))}
+        changed_assets = git(EN_DIR, "diff", "--name-only", f"{baseline}..HEAD",
+                             "--", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp").splitlines()
     else:
         todo = set()
+        changed_assets = []
 
     en_files = set(md_files(EN_DIR))
     zh_files = set(md_files(ZH_DIR))
 
     to_translate = {p for st, p in todo if st in ("A", "M")} | (en_files - zh_files)
     to_delete = {p for st, p in todo if st == "D"} | (zh_files - en_files)
+
+    # static assets are copied verbatim, never translated
+    en_assets = {os.path.relpath(os.path.join(dp, f), EN_DIR)
+                 for dp, dns, fns in os.walk(EN_DIR) if ".git" not in dp.split(os.sep)
+                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp")}
+    zh_assets = {os.path.relpath(os.path.join(dp, f), ZH_DIR)
+                 for dp, dns, fns in os.walk(ZH_DIR) if ".git" not in dp.split(os.sep)
+                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp")}
+    to_copy = set(changed_assets) | (en_assets - zh_assets)
+    to_delete |= zh_assets - en_assets
+
+    copied = []
+    for rel in sorted(to_copy):
+        src = os.path.join(EN_DIR, rel)
+        if not os.path.exists(src):
+            continue
+        dst = os.path.join(ZH_DIR, rel)
+        os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
+        subprocess.run(["cp", src, dst], check=True)
+        copied.append(rel)
+        print(f"copied asset {rel}")
 
     translated, failed = [], []
     for rel in sorted(to_translate):
@@ -126,16 +150,16 @@ def main():
             os.remove(p)
             print(f"deleted {rel}")
 
-    if not failed and (translated or to_delete or not baseline):
+    if not failed and (translated or copied or to_delete or not baseline):
         open(sync_file, "w").write(head + "\n")
 
-    print(f"\n== summary: {len(translated)} translated, "
+    print(f"\n== summary: {len(translated)} translated, {len(copied)} assets copied, "
           f"{len(to_delete)} deleted, {len(failed)} failed ==")
-    for rel in translated:
+    for rel in translated + copied:
         print(f"  + {rel}")
     if failed:
         sys.exit(1)
-    if not translated and not to_delete:
+    if not translated and not copied and not to_delete:
         print("nothing to do")
 
 
