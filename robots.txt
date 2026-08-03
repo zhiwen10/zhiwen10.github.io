@@ -1,1 +1,1 @@
-User-agent: * Disallow: /wiki/ Disallow: /wiki Sitemap: https://www.yezhiwen.com/sitemap.xml
+User-agent: * Disallow: /wiki/ Disallow: /wiki Disallow: /wiki_zh/ Disallow: /wiki_zh Sitemap: https://www.yezhiwen.com/sitemap.xml
