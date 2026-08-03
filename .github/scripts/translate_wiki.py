@@ -65,16 +65,21 @@ def translate(text):
         f"{BASE_URL}/chat/completions", data=body,
         headers={"Authorization": f"Bearer {API_KEY}",
                  "Content-Type": "application/json"}, method="POST")
-    for attempt in range(3):
+    for attempt in range(4):
         try:
             with urllib.request.urlopen(req, timeout=360) as r:
                 return json.load(r)["choices"][0]["message"]["content"]
         except urllib.error.HTTPError as e:
             detail = e.read().decode(errors="replace")[:500]
-            if attempt == 2:
+            if attempt == 3:
                 raise RuntimeError(f"HTTP {e.code}: {detail}") from e
             print(f"  retry after error: HTTP {e.code}: {detail}", file=sys.stderr)
-            time.sleep(5 * (attempt + 1))
+            time.sleep(30 * (attempt + 1))
+        except Exception as e:
+            if attempt == 3:
+                raise
+            print(f"  retry after error: {e}", file=sys.stderr)
+            time.sleep(30 * (attempt + 1))
 
 
 def main():
