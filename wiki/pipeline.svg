@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="330" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#555"/>
+    </marker>
+    <marker id="arrG" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+
+  <!-- source box -->
+  <rect x="10" y="125" width="170" height="80" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="95" y="152" text-anchor="middle" font-weight="bold">Edit &amp; push</text>
+  <text x="95" y="170" text-anchor="middle">yelab-wiki (Gitee)</text>
+  <text x="95" y="188" text-anchor="middle" fill="#777">edu.gitee.com/ye-lab</text>
+
+  <!-- EN row -->
+  <rect x="250" y="30" width="190" height="64" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="345" y="56" text-anchor="middle" font-weight="bold">sync-wiki.yml</text>
+  <text x="345" y="74" text-anchor="middle">every 15 min · GitHub Action</text>
+
+  <rect x="490" y="30" width="180" height="64" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="580" y="56" text-anchor="middle" font-weight="bold">zhiwen10.github.io</text>
+  <text x="580" y="74" text-anchor="middle">copies repo into wiki/</text>
+
+  <rect x="720" y="30" width="190" height="64" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="815" y="50" text-anchor="middle" font-weight="bold">deploy.yml → GitHub Pages</text>
+  <text x="815" y="68" text-anchor="middle">Jekyll rebuild</text>
+  <text x="815" y="86" text-anchor="middle" font-weight="bold">www.yezhiwen.com/wiki/</text>
+
+  <!-- ZH row -->
+  <rect x="250" y="236" width="190" height="64" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="345" y="262" text-anchor="middle" font-weight="bold">translate-wiki.yml</text>
+  <text x="345" y="280" text-anchor="middle">every 30 min · Kimi API (k2.6)</text>
+
+  <rect x="490" y="236" width="180" height="64" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="580" y="262" text-anchor="middle" font-weight="bold">yelab-wiki-zh (Gitee)</text>
+  <text x="580" y="280" text-anchor="middle">Chinese translation repo</text>
+
+  <rect x="720" y="236" width="190" height="64" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="815" y="256" text-anchor="middle" font-weight="bold">sync-wiki.yml → Pages</text>
+  <text x="815" y="274" text-anchor="middle">copies repo into wiki_zh/</text>
+  <text x="815" y="292" text-anchor="middle" font-weight="bold">www.yezhiwen.com/wiki_zh/</text>
+
+  <!-- arrows -->
+  <line x1="180" y1="150" x2="243" y2="75" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="180" y1="180" x2="243" y2="255" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <line x1="440" y1="62" x2="483" y2="62" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="670" y1="62" x2="713" y2="62" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="440" y1="268" x2="483" y2="268" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <line x1="670" y1="268" x2="713" y2="268" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+  <!-- timing labels -->
+  <text x="205" y="100" fill="#777" font-size="11">≤15 min</text>
+  <text x="205" y="230" fill="#777" font-size="11">≤30 min</text>
+</svg>
