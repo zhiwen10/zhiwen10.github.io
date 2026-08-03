@@ -2,6 +2,7 @@
 permalink: /robots.txt
 ---
 User-agent: *
-Disallow:
+Disallow: /wiki/
+Disallow: /wiki
 
 Sitemap: {{ site.baseurl | prepend: site.url }}/sitemap.xml
