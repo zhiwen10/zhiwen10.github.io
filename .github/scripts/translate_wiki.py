@@ -140,7 +140,7 @@ def main():
                       "--", "*.md").splitlines()
         todo = {(s[0], s[1]) for line in changed if (s := line.split("\t"))}
         changed_assets = git(EN_DIR, "diff", "--name-only", f"{baseline}..HEAD",
-                             "--", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp").splitlines()
+                             "--", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.js", "*.css").splitlines()
     else:
         todo = set()
         changed_assets = []
@@ -154,10 +154,10 @@ def main():
     # static assets are copied verbatim, never translated
     en_assets = {os.path.relpath(os.path.join(dp, f), EN_DIR)
                  for dp, dns, fns in os.walk(EN_DIR) if ".git" not in dp.split(os.sep)
-                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp")}
+                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp", "js", "css")}
     zh_assets = {os.path.relpath(os.path.join(dp, f), ZH_DIR)
                  for dp, dns, fns in os.walk(ZH_DIR) if ".git" not in dp.split(os.sep)
-                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp")}
+                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp", "js", "css")}
     to_copy = set(changed_assets) | (en_assets - zh_assets)
     to_delete |= zh_assets - en_assets
 
