@@ -1,19 +1,19 @@
 - [首页](README.md)
 - **实验室**
   - [使命宣言](the-lab/mission-statement.md)
-  - [期望](the-lab/expectations.md)
+  - [期望与要求](the-lab/expectations.md)
   - [人员与联系方式](the-lab/people.md)
   - [实验室电脑](the-lab/computers.md)
 - **组织管理**
   - [组会](organizational/meetings.md)
-  - [入组指南](organizational/onboarding.md)
+  - [新人入职](organizational/onboarding.md)
   - [日程表](organizational/calendar.md)
   - [休假](organizational/vacations.md)
   - [采购](organizational/ordering.md)
   - [学术会议](organizational/conferences.md)
   - [安全](organizational/safety.md)
-- **学术资源**
-  - [各事项咨询对象](science/expert-list.md)
+- **科研**
+  - [各领域专家](science/expert-list.md)
   - [邮件列表](science/mailing-lists.md)
   - [学术活动日历](science/events-calendars.md)
   - [阅读清单](science/reading-list.md)
@@ -25,18 +25,22 @@
 - **实验动物**
   - [实验动物总览](animals/README.md)
   - [动物实验方案](animals/protocol.md)
-  - [动物订购](animals/ordering.md)
-  - [动物饲养](animals/husbandry.md)
+  - [订购动物](animals/ordering.md)
+  - [饲养管理](animals/husbandry.md)
 - **安全与培训**
   - [必修培训](safety-and-training/README.md)
 - **代码**
-  - [Git 与 Gitee 规范](code/git-gitee.md)
+  - [Git 与 Gitee 使用规范](code/git-gitee.md)
   - [Python](code/python.md)
   - [共享仓库](code/shared-repos.md)
-  - [分析流程](code/pipelines.md)
+  - [流水线](code/pipelines.md)
 - **硬件**
   - [设备](hardware/README.md)
 - **职业发展**
   - [职业](career/README.md)
 - **经费**
   - [奖学金与基金](funding/README.md)
+- **元信息**
+  - [本站运作方式](how-this-website-works.md)
+- **organizational/**
+  - [模板](organizational/templates.md)

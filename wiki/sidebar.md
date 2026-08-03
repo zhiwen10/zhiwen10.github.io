@@ -42,3 +42,5 @@
   - [Fellowships & grants](funding/README.md)
 - **Meta**
   - [How this website works](how-this-website-works.md)
+- **organizational/**
+  - [templates](organizational/templates.md)
