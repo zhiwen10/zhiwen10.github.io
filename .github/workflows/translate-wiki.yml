@@ -26,7 +26,7 @@ jobs:
         id: translate
         env:
           MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
-          MOONSHOT_MODEL: moonshot-v1-8k
+          MOONSHOT_MODEL: kimi-k2.6
         run: |
           python3 .github/scripts/translate_wiki.py /tmp/wiki-en /tmp/wiki-zh | tee /tmp/translate.log
           if grep -q "nothing to do" /tmp/translate.log; then
