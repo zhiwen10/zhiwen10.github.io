@@ -18,6 +18,7 @@ Env:
 
 import json
 import os
+import re
 import subprocess
 import sys
 import time
@@ -53,6 +54,41 @@ def md_files(root):
     return sorted(out)
 
 
+def patch_sidebar():
+    """Append any .md page missing from sidebar.md under its folder section,
+    reusing the README's link text as the title when available. Returns True
+    if sidebar.md was modified (caller commits it)."""
+    sb = os.path.join(EN_DIR, "sidebar.md")
+    if not os.path.exists(sb):
+        return False
+    content = open(sb).read()
+    linked = set(re.findall(r"\]\(([^)]+\.md)\)", content))
+    missing = [p for p in md_files(EN_DIR) if p not in linked and p != "sidebar.md"]
+    if not missing:
+        return False
+    readme_path = os.path.join(EN_DIR, "README.md")
+    readme = open(readme_path).read() if os.path.exists(readme_path) else ""
+    titles = {m.group(2): m.group(1)
+              for m in re.finditer(r"\[([^\]]+)\]\(([^)]+\.md)\)", readme)}
+    lines = content.rstrip().split("\n")
+    for rel in missing:
+        title = titles.get(rel) or os.path.basename(rel)[:-3].replace("-", " ").replace("_", " ")
+        folder = os.path.dirname(rel)
+        header = f"- **{folder}/**" if folder else None
+        entry = f"  - [{title}]({rel})" if folder else f"- [{title}]({rel})"
+        if header and header in lines:
+            idx = lines.index(header)
+            j = idx + 1
+            while j < len(lines) and lines[j].startswith("  "):
+                j += 1
+            lines.insert(j, entry)
+        else:
+            lines += ([header, entry] if header else [entry])
+        print(f"sidebar: added missing entry {rel}")
+    open(sb, "w").write("\n".join(lines) + "\n")
+    return True
+
+
 def translate(text):
     body = json.dumps({
         "model": MODEL,
@@ -83,6 +119,13 @@ def translate(text):
 
 
 def main():
+    sidebar_changed = patch_sidebar()
+    if sidebar_changed:
+        git(EN_DIR, "config", "user.name", "wiki-translator[bot]")
+        git(EN_DIR, "config", "user.email", "translator@yelab.local")
+        git(EN_DIR, "add", "sidebar.md")
+        git(EN_DIR, "commit", "-q", "-m", "sidebar: add missing page entries")
+
     head = git(EN_DIR, "rev-parse", "HEAD")
     sync_file = os.path.join(ZH_DIR, ".translation-sync")
     baseline = open(sync_file).read().strip() if os.path.exists(sync_file) else ""
@@ -159,7 +202,7 @@ def main():
         print(f"  + {rel}")
     if failed:
         sys.exit(1)
-    if not translated and not copied and not to_delete:
+    if not translated and not copied and not to_delete and not sidebar_changed:
         print("nothing to do")
 
 
