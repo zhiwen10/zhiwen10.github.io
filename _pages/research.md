@@ -48,7 +48,7 @@ By integrating insights across different modalities of population neuronal activ
 
 <div class="row">
     <div class="col-sm-8 mx-auto mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/rotating_waves_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="lazy" path="assets/img/rotating_waves_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
@@ -68,7 +68,7 @@ Neuropixels Ultra/HD probes that I and my collaborators developed, are well-suit
 <br>
 <div class="row">
     <div class="col-sm-8 mx-auto mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/multi_probe_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
+        {% include figure.liquid loading="lazy" path="assets/img/multi_probe_en.png" title="example image" class="img-fluid rounded z-depth-1" %}
     </div>
 </div>
 <div class="caption">
