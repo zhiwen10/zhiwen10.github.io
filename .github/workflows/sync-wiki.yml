@@ -15,11 +15,39 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pull latest wiki from Gitee
+      - name: Pull latest wiki from Gitee (English)
         run: |
           rm -rf /tmp/yelab-wiki
           git clone --depth 1 https://gitee.com/ye-lab/yelab-wiki.git /tmp/yelab-wiki
-          rsync -a --delete --exclude='.git' /tmp/yelab-wiki/ wiki/
+          rsync -a --delete --exclude='.git' --exclude='zh/' /tmp/yelab-wiki/ wiki/
+
+      - name: Pull latest wiki from Gitee (Chinese, private)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          rm -rf /tmp/yelab-wiki-zh
+          git clone --depth 1 "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" /tmp/yelab-wiki-zh
+          rsync -a --delete --exclude='.git' --exclude='index.html' --exclude='.nojekyll' \
+            /tmp/yelab-wiki-zh/ wiki/zh/
+          python3 - <<'PYEOF'
+          import os
+          root = 'wiki/zh'
+          lines = ["- [首页](README.md)"]
+          for entry in sorted(os.listdir(root)):
+              if entry.startswith('.') or not os.path.isdir(os.path.join(root, entry)):
+                  continue
+              lines.append(f"- **{entry}/**")
+              for r, dirs, files in os.walk(os.path.join(root, entry)):
+                  dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
+                  depth = r.count(os.sep) - os.path.join(root, entry).count(os.sep)
+                  for f in sorted(files):
+                      if not f.endswith('.md'):
+                          continue
+                      rel = os.path.relpath(os.path.join(r, f), root)
+                      title = (os.path.basename(r) + ' overview') if f == 'README.md' else f[:-3].replace('-', ' ').replace('_', ' ')
+                      lines.append(f"{'  ' * depth}- [{title}]({rel})")
+          open(os.path.join(root, 'sidebar.md'), 'w').write('\n'.join(lines) + '\n')
+          PYEOF
 
       - name: Commit and push if changed
         run: |
