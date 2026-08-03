@@ -1,0 +1,63 @@
+name: Translate wiki (en -> zh)
+
+on:
+  schedule:
+    - cron: "13,43 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone both Gitee repos
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          rm -rf /tmp/wiki-en /tmp/wiki-zh
+          git clone https://gitee.com/ye-lab/yelab-wiki.git /tmp/wiki-en
+          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" /tmp/wiki-zh
+
+      - name: Translate changed pages via Kimi API
+        id: translate
+        env:
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          MOONSHOT_MODEL: moonshot-v1-8k
+        run: |
+          python3 .github/scripts/translate_wiki.py /tmp/wiki-en /tmp/wiki-zh | tee /tmp/translate.log
+          if grep -q "nothing to do" /tmp/translate.log; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push translations to Gitee (zh repo)
+        if: steps.translate.outputs.changed == 'true'
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          cd /tmp/wiki-zh
+          git config user.name "wiki-translator[bot]"
+          git config user.email "translator@yelab.local"
+          git add -A
+          git commit -m "Auto-translate from yelab-wiki@$(git -C /tmp/wiki-en rev-parse --short HEAD)
+
+          $(grep '^  + ' /tmp/translate.log | sed 's/^  + /- /')"
+          git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" HEAD:main
+
+      - name: Record zh sync point in en repo
+        if: steps.translate.outputs.changed == 'true'
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          cd /tmp/wiki-en
+          git config user.name "wiki-translator[bot]"
+          git config user.email "translator@yelab.local"
+          git -C /tmp/wiki-zh rev-parse HEAD > .translation-sync
+          git add .translation-sync
+          git commit -m "translation-sync: zh caught up at $(git -C /tmp/wiki-zh rev-parse --short HEAD)"
+          git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" HEAD:main
