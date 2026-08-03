@@ -1,43 +1,39 @@
 - [首页](README.md)
-- **animals/**
-- [animals 概览](animals/README.md)
-- [husbandry](animals/husbandry.md)
-- [ordering](animals/ordering.md)
-- [protocol](animals/protocol.md)
-- **career/**
-- [career 概览](career/README.md)
-- **code/**
-- [git gitee](code/git-gitee.md)
-- [pipelines](code/pipelines.md)
-- [python](code/python.md)
-- [shared repos](code/shared-repos.md)
-- **experimental/**
-- [data backup](experimental/data-backup.md)
-- [data server](experimental/data-server.md)
-- [general](experimental/general.md)
-- [protocols](experimental/protocols.md)
-- **funding/**
-- [funding 概览](funding/README.md)
-- **hardware/**
-- [hardware 概览](hardware/README.md)
-- **organizational/**
-- [calendar](organizational/calendar.md)
-- [conferences](organizational/conferences.md)
-- [meetings](organizational/meetings.md)
-- [onboarding](organizational/onboarding.md)
-- [ordering](organizational/ordering.md)
-- [safety](organizational/safety.md)
-- [templates](organizational/templates.md)
-- [vacations](organizational/vacations.md)
-- **safety-and-training/**
-- [safety-and-training 概览](safety-and-training/README.md)
-- **science/**
-- [events calendars](science/events-calendars.md)
-- [expert list](science/expert-list.md)
-- [mailing lists](science/mailing-lists.md)
-- [reading list](science/reading-list.md)
-- **the-lab/**
-- [computers](the-lab/computers.md)
-- [expectations](the-lab/expectations.md)
-- [mission statement](the-lab/mission-statement.md)
-- [people](the-lab/people.md)
+- **实验室概况**
+  - [使命宣言](the-lab/mission-statement.md)
+  - [期望](the-lab/expectations.md)
+  - [成员与联系方式](the-lab/people.md)
+  - [实验室计算机](the-lab/computers.md)
+- **组织事务**
+  - [实验室例会](organizational/meetings.md)
+  - [新成员入职](organizational/onboarding.md)
+  - [日历](organizational/calendar.md)
+  - [休假](organizational/vacations.md)
+  - [采购](organizational/ordering.md)
+  - [学术会议](organizational/conferences.md)
+  - [安全](organizational/safety.md)
+- **科研**
+  - [各领域咨询对象](science/expert-list.md)
+  - [邮件列表](science/mailing-lists.md)
+  - [学术活动日历](science/events-calendars.md)
+  - [阅读清单](science/reading-list.md)
+- **实验**
+  - [通用规程](experimental/general.md)
+  - [实验方案](experimental/protocols.md)
+  - [数据服务器](experimental/data-server.md)
+  - [数据备份](experimental/data-backup.md)
+- **实验动物**
+  - [实验动物](animals/README.md)
+- **安全与培训**
+  - [必修培训](safety-and-training/README.md)
+- **代码**
+  - [Git 与 Gitee 规范](code/git-gitee.md)
+  - [Python](code/python.md)
+  - [共享仓库](code/shared-repos.md)
+  - [数据处理流程](code/pipelines.md)
+- **硬件**
+  - [设备](hardware/README.md)
+- **职业发展**
+  - [职业发展](career/README.md)
+- **经费**
+  - [奖学金与基金](funding/README.md)
