@@ -56,7 +56,6 @@ def md_files(root):
 def translate(text):
     body = json.dumps({
         "model": MODEL,
-        "temperature": 0.3,
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": text},
@@ -70,10 +69,11 @@ def translate(text):
         try:
             with urllib.request.urlopen(req, timeout=120) as r:
                 return json.load(r)["choices"][0]["message"]["content"]
-        except Exception as e:
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode(errors="replace")[:500]
             if attempt == 2:
-                raise
-            print(f"  retry after error: {e}", file=sys.stderr)
+                raise RuntimeError(f"HTTP {e.code}: {detail}") from e
+            print(f"  retry after error: HTTP {e.code}: {detail}", file=sys.stderr)
             time.sleep(5 * (attempt + 1))
 
 
