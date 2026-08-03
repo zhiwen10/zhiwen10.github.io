@@ -2,7 +2,7 @@
 
 Welcome to the YeLab wiki — the lab's central knowledge base.
 
-> Hosted on Gitee: https://gitee.com/yelab0/yelab-wiki
+> Hosted on Gitee: https://edu.gitee.com/ye-lab/yelab-wiki
 
 ## The Lab
 
@@ -67,17 +67,28 @@ Welcome to the YeLab wiki — the lab's central knowledge base.
 
 ---
 
-## Translation sync
-
-This repo is the **authoritative source**. A Chinese translation lives at [yelab-wiki-zh](https://gitee.com/ye-lab/yelab-wiki-zh) — make content edits here first; they will be synced over. 
-
-`.translation-sync` (repo root) records the yelab-wiki-zh commit this repo was last synced against, and vice versa.
-
 ## How this website works
 
-This wiki is edited on Gitee at [ye-lab/yelab-wiki](https://gitee.com/ye-lab/yelab-wiki) and published automatically to **https://www.yezhiwen.com/wiki/**.
+This repo is the **authoritative source** of the lab wiki. Everything else — the public website and the Chinese translation — is generated from here automatically.
 
-- Push to `main` on Gitee — the website updates itself within ~15 minutes.
-- A scheduled GitHub Action in the website repo ([zhiwen10.github.io](https://github.com/zhiwen10/zhiwen10.github.io), `.github/workflows/sync-wiki.yml`) clones this repo every 15 min, syncs it into the site's `wiki/` folder, and triggers the site rebuild. The Chinese translation is synced the same way into `wiki/zh/`.
-- To add a page: create the `.md` file and add a matching entry to `sidebar.md`.
-- Do not edit `wiki/` in the website repo by hand — the sync overwrites it.
+**Sites**
+
+- English: **https://www.yezhiwen.com/wiki/**
+- 中文: **https://www.yezhiwen.com/wiki_zh/** — translated from this repo, lives at [yelab-wiki-zh](https://edu.gitee.com/ye-lab/yelab-wiki-zh)
+- Both are excluded from search engines (`robots.txt` + `noindex` meta).
+
+**Editing**
+
+- Make all content edits here, in English, and push to `main`. The English site updates within ~15 minutes.
+- To add a page: create the `.md` file and add a matching entry to `sidebar.md`, keeping the same order as this README.
+- Never edit `wiki/` or `wiki_zh/` in the website repo by hand — the sync overwrites them.
+
+**Publishing** (`.github/workflows/sync-wiki.yml` in [zhiwen10.github.io](https://github.com/zhiwen10/zhiwen10.github.io))
+
+Every 15 minutes a GitHub Action clones this repo into the site's `wiki/` folder and the Chinese repo into `wiki_zh/`, commits any changes, and triggers the Jekyll rebuild that publishes to GitHub Pages.
+
+**Translation** (`.github/workflows/translate-wiki.yml`)
+
+Every 30 minutes a second Action diffs this repo against the last-synced commit (recorded in `.translation-sync` on both sides), translates new and changed pages into Chinese with the Kimi API (`kimi-k2.6`), mirrors deletions, and pushes to [yelab-wiki-zh](https://edu.gitee.com/ye-lab/yelab-wiki-zh) — the publishing pipeline then carries it to `/wiki_zh/`. End to end, an English edit reaches the Chinese site within ~45 minutes. Both workflows can also be run manually from the website repo's Actions tab.
+
+Translations are machine-generated: skim the `Auto-translate` commit diffs when convenient and fix mistakes directly in the zh repo (a fix persists until that English page changes again).

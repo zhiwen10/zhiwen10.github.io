@@ -1,39 +1,42 @@
 - [首页](README.md)
-- **实验室概况**
+- **实验室**
   - [使命宣言](the-lab/mission-statement.md)
   - [期望](the-lab/expectations.md)
-  - [成员与联系方式](the-lab/people.md)
-  - [实验室计算机](the-lab/computers.md)
-- **组织事务**
-  - [实验室例会](organizational/meetings.md)
-  - [新成员入职](organizational/onboarding.md)
-  - [日历](organizational/calendar.md)
+  - [人员与联系方式](the-lab/people.md)
+  - [实验室电脑](the-lab/computers.md)
+- **组织管理**
+  - [组会](organizational/meetings.md)
+  - [入组指南](organizational/onboarding.md)
+  - [日程表](organizational/calendar.md)
   - [休假](organizational/vacations.md)
   - [采购](organizational/ordering.md)
   - [学术会议](organizational/conferences.md)
   - [安全](organizational/safety.md)
-- **科研**
-  - [各领域咨询对象](science/expert-list.md)
+- **学术资源**
+  - [各事项咨询对象](science/expert-list.md)
   - [邮件列表](science/mailing-lists.md)
   - [学术活动日历](science/events-calendars.md)
   - [阅读清单](science/reading-list.md)
 - **实验**
-  - [通用规程](experimental/general.md)
+  - [通用流程](experimental/general.md)
   - [实验方案](experimental/protocols.md)
   - [数据服务器](experimental/data-server.md)
   - [数据备份](experimental/data-backup.md)
 - **实验动物**
-  - [实验动物](animals/README.md)
+  - [实验动物总览](animals/README.md)
+  - [动物实验方案](animals/protocol.md)
+  - [动物订购](animals/ordering.md)
+  - [动物饲养](animals/husbandry.md)
 - **安全与培训**
   - [必修培训](safety-and-training/README.md)
 - **代码**
   - [Git 与 Gitee 规范](code/git-gitee.md)
   - [Python](code/python.md)
   - [共享仓库](code/shared-repos.md)
-  - [数据处理流程](code/pipelines.md)
+  - [分析流程](code/pipelines.md)
 - **硬件**
   - [设备](hardware/README.md)
 - **职业发展**
-  - [职业发展](career/README.md)
+  - [职业](career/README.md)
 - **经费**
   - [奖学金与基金](funding/README.md)
