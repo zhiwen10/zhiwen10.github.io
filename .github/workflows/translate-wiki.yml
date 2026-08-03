@@ -2,11 +2,12 @@ name: Translate wiki (en -> zh)
 
 on:
   schedule:
-    - cron: "13,43 * * * *"
+    - cron: "4,19,34,49 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   translate:
@@ -62,3 +63,13 @@ jobs:
           git diff --cached --quiet || git commit -m "translation-sync: zh caught up at $(git -C /tmp/wiki-zh rev-parse --short HEAD)"
           git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" main
           git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" HEAD:main
+
+      # Chain straight into publishing instead of waiting for sync-wiki's cron.
+      - name: Trigger wiki publish sync
+        if: steps.translate.outputs.changed == 'true'
+        run: |
+          curl -sf -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/sync-wiki.yml/dispatches" \
+            -d '{"ref":"main"}'
