@@ -69,6 +69,15 @@ Welcome to the YeLab wiki — the lab's central knowledge base.
 
 ## Translation sync
 
-This repo is the **authoritative source**. A Chinese translation lives at [yelab-wiki-zh](https://gitee.com/yelab0/yelab-wiki-zh) — make content edits here first; they will be synced over. 
+This repo is the **authoritative source**. A Chinese translation lives at [yelab-wiki-zh](https://gitee.com/ye-lab/yelab-wiki-zh) — make content edits here first; they will be synced over. 
 
 `.translation-sync` (repo root) records the yelab-wiki-zh commit this repo was last synced against, and vice versa.
+
+## How this website works
+
+This wiki is edited on Gitee at [ye-lab/yelab-wiki](https://gitee.com/ye-lab/yelab-wiki) and published automatically to **https://www.yezhiwen.com/wiki/**.
+
+- Push to `main` on Gitee — the website updates itself within ~15 minutes.
+- A scheduled GitHub Action in the website repo ([zhiwen10.github.io](https://github.com/zhiwen10/zhiwen10.github.io), `.github/workflows/sync-wiki.yml`) clones this repo every 15 min, syncs it into the site's `wiki/` folder, and triggers the site rebuild. The Chinese translation is synced the same way into `wiki/zh/`.
+- To add a page: create the `.md` file and add a matching entry to `sidebar.md`.
+- Do not edit `wiki/` in the website repo by hand — the sync overwrites it.
