@@ -67,7 +67,7 @@ def translate(text):
                  "Content-Type": "application/json"}, method="POST")
     for attempt in range(3):
         try:
-            with urllib.request.urlopen(req, timeout=120) as r:
+            with urllib.request.urlopen(req, timeout=360) as r:
                 return json.load(r)["choices"][0]["message"]["content"]
         except urllib.error.HTTPError as e:
             detail = e.read().decode(errors="replace")[:500]
@@ -121,7 +121,7 @@ def main():
             os.remove(p)
             print(f"deleted {rel}")
 
-    if translated or to_delete or not baseline:
+    if not failed and (translated or to_delete or not baseline):
         open(sync_file, "w").write(head + "\n")
 
     print(f"\n== summary: {len(translated)} translated, "
