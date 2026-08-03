@@ -27,33 +27,13 @@ jobs:
         run: |
           rm -rf /tmp/yelab-wiki-zh
           git clone --depth 1 "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" /tmp/yelab-wiki-zh
-          rsync -a --delete --exclude='.git' --exclude='index.html' --exclude='.nojekyll' \
-            /tmp/yelab-wiki-zh/ wiki/zh/
-          python3 - <<'PYEOF'
-          import os
-          root = 'wiki/zh'
-          lines = ["- [首页](README.md)"]
-          for entry in sorted(os.listdir(root)):
-              if entry.startswith('.') or not os.path.isdir(os.path.join(root, entry)):
-                  continue
-              lines.append(f"- **{entry}/**")
-              for r, dirs, files in os.walk(os.path.join(root, entry)):
-                  dirs[:] = sorted(d for d in dirs if not d.startswith('.'))
-                  depth = r.count(os.sep) - os.path.join(root, entry).count(os.sep)
-                  for f in sorted(files):
-                      if not f.endswith('.md'):
-                          continue
-                      rel = os.path.relpath(os.path.join(r, f), root)
-                      title = (os.path.basename(r) + ' overview') if f == 'README.md' else f[:-3].replace('-', ' ').replace('_', ' ')
-                      lines.append(f"{'  ' * depth}- [{title}]({rel})")
-          open(os.path.join(root, 'sidebar.md'), 'w').write('\n'.join(lines) + '\n')
-          PYEOF
+          rsync -a --delete --exclude='.git' /tmp/yelab-wiki-zh/ wiki_zh/
 
       - name: Commit and push if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add wiki/
+          git add wiki/ wiki_zh/
           if git diff --cached --quiet; then
             echo "Wiki already up to date."
           else
