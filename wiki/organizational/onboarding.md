@@ -5,8 +5,8 @@ Welcome to YeLab! Work through this list in your first week. Ask PI Zhiwen if an
 ## Day 1 — accounts & access
 
 - [ ] Collect your badge (contact Ms. Na Li)
-- [ ] Get added to the **YeLab Gitee org** (`gitee.com/yelab0`) — see below
-- [ ] Get added to the lab chat group (Feishu/WeChat: contact Zhiwen or Na Li)
+- [ ] Get added to the **YeLab Gitee org** (`gitee.com/ye-lab`) — see below
+- [ ] Get added to the lab chat group (Feishu/WeChat: contact Zhiwen or Ms. Li)
 - [ ] Get added to the lab calendar — see [calendar](calendar.md)
 
 ## Week 1 — environment
@@ -27,13 +27,16 @@ Welcome to YeLab! Work through this list in your first week. Ask PI Zhiwen if an
 
 ## Gitee organization
 
-The lab's code lives under the **yelab0** org on Gitee: https://gitee.com/yelab0
+The lab's code lives under the **ye-lab** org on Gitee: https://gitee.com/ye-lab; or https://edu.gitee.com/ye-lab.
+These two sites are the same backend, but two different frontend interfaces. 
+We got the education free version (edu.gitee.com/ye-lab). 
+They usually charge for 400-500RMB/person enterprise version (gitee.com/ye-lab), so we got a bargain. 
 
 To get access:
 
 1. Register a personal Gitee account at https://gitee.com
-2. Send your Gitee username to Zhiwen
-3. You'll be added to the org with a team role
+2. i will then send you an invitation link through feishu or email to join the group (ye-lab)
+3. You'll be added to the org with a team role, usually as an admin
 4. Install git and connect it to Gitee — see [Git & Gitee policy](../code/git-gitee.md)
 
 > Why Gitee and not GitHub? GitHub is unreachable from some lab locations/networks. Gitee is the lab's primary platform; selected repos are mirrored to GitHub for international visibility. See [Git & Gitee policy](../code/git-gitee.md).
