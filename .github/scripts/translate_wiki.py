@@ -1,14 +1,24 @@
 #!/usr/bin/env python3
-"""Translate changed English wiki pages to Chinese via the Moonshot (Kimi) API.
+"""Sync translations between the English and Chinese wiki repos (bidirectional).
 
 Usage: translate_wiki.py <en_repo_dir> <zh_repo_dir>
 
-Reads the English commit hash recorded in <zh_repo_dir>/.translation-sync as
-the baseline, translates every added/modified markdown file since then into
-the corresponding path in the Chinese repo, mirrors deletions, and refreshes
-.translation-sync on the Chinese side. Converges even if the baseline is
-missing/stale: English files absent from the Chinese repo are translated,
-Chinese files absent from the English repo are deleted.
+Human edits on EITHER side are translated to the other:
+  - English pages added/changed by human commits in yelab-wiki since the
+    baseline recorded in <zh_repo_dir>/.translation-sync are translated into
+    Chinese; pages humans deleted there are deleted on the Chinese side.
+  - Chinese pages added/changed by human commits in yelab-wiki-zh since the
+    baseline recorded in <en_repo_dir>/.translation-sync are back-translated
+    into English; deletions are mirrored the same way.
+
+Bot commits (author "wiki-translator[bot]") never trigger translation — that
+is what keeps the two directions from chasing each other in an endless loop.
+If the same path was human-edited on both sides, English wins. Static assets
+(svg/png/jpg/jpeg/gif/webp/js/css) are copied verbatim, never translated.
+
+Converges even with a missing/stale baseline: pages present on only one side
+are translated to the other, and nothing is deleted without an explicit
+human deletion on record.
 
 Env:
   MOONSHOT_API_KEY   (required)
@@ -29,14 +39,29 @@ API_KEY = os.environ["MOONSHOT_API_KEY"]
 BASE_URL = os.environ.get("MOONSHOT_BASE_URL", "https://api.moonshot.cn/v1")
 MODEL = os.environ.get("MOONSHOT_MODEL", "moonshot-v1-8k")
 
-SYSTEM_PROMPT = (
-    "You are a professional translator for a neuroscience lab's internal wiki. "
-    "Translate the given markdown document from English to Simplified Chinese. "
-    "Preserve ALL markdown structure exactly: headings, lists, links, tables, "
-    "code blocks, HTML tags such as <mark>...</mark>, and file paths in link "
-    "targets (translate only the visible link text, never the .md path). "
-    "Output ONLY the translated markdown, no commentary."
-)
+BOT_AUTHOR = "wiki-translator"
+MD_PATTERNS = ["*.md"]
+ASSET_EXTS = ("svg", "png", "jpg", "jpeg", "gif", "webp", "js", "css")
+ASSET_PATTERNS = [f"*.{e}" for e in ASSET_EXTS]
+
+SYSTEM_PROMPTS = {
+    ("en", "zh"): (
+        "You are a professional translator for a neuroscience lab's internal wiki. "
+        "Translate the given markdown document from English to Simplified Chinese. "
+        "Preserve ALL markdown structure exactly: headings, lists, links, tables, "
+        "code blocks, HTML tags such as <mark>...</mark>, and file paths in link "
+        "targets (translate only the visible link text, never the .md path). "
+        "Output ONLY the translated markdown, no commentary."
+    ),
+    ("zh", "en"): (
+        "You are a professional translator for a neuroscience lab's internal wiki. "
+        "Translate the given markdown document from Simplified Chinese to English. "
+        "Preserve ALL markdown structure exactly: headings, lists, links, tables, "
+        "code blocks, HTML tags such as <mark>...</mark>, and file paths in link "
+        "targets (translate only the visible link text, never the .md path). "
+        "Output ONLY the translated markdown, no commentary."
+    ),
+}
 
 
 def git(repo, *args):
@@ -52,6 +77,12 @@ def md_files(root):
             if f.endswith(".md"):
                 out.append(os.path.relpath(os.path.join(dirpath, f), root))
     return sorted(out)
+
+
+def asset_files(root):
+    return {os.path.relpath(os.path.join(dp, f), root)
+            for dp, dns, fns in os.walk(root) if ".git" not in dp.split(os.sep)
+            for f in fns if f.rsplit(".", 1)[-1].lower() in ASSET_EXTS}
 
 
 def patch_sidebar():
@@ -89,11 +120,11 @@ def patch_sidebar():
     return True
 
 
-def translate(text):
+def translate(text, src_lang, dst_lang):
     body = json.dumps({
         "model": MODEL,
         "messages": [
-            {"role": "system", "content": SYSTEM_PROMPT},
+            {"role": "system", "content": SYSTEM_PROMPTS[(src_lang, dst_lang)]},
             {"role": "user", "content": text},
         ],
     }).encode()
@@ -118,6 +149,42 @@ def translate(text):
             time.sleep(30 * (attempt + 1))
 
 
+def read_baseline(marker_path, repo):
+    """The counterpart commit hash this repo's content was last synced to,
+    validated against the counterpart's history ('' if missing/stale)."""
+    if os.path.exists(marker_path):
+        base = open(marker_path).read().strip()
+        if base:
+            try:
+                git(repo, "rev-parse", "--verify", f"{base}^{{commit}}")
+                return base
+            except subprocess.CalledProcessError:
+                pass
+    return ""
+
+
+def human_changes(repo, baseline, patterns):
+    """Map path -> status (A/M/D) for files touched by human (non-bot) commits
+    in baseline..HEAD. Bot translation commits are ignored so machine
+    translations never trigger re-translation back the other way."""
+    if not baseline:
+        return {}
+    out = {}
+    log = git(repo, "log", "--reverse", "--no-merges", "--format=%H%x09%an",
+              f"{baseline}..HEAD")
+    for line in log.splitlines():
+        sha, _, author = line.partition("\t")
+        if BOT_AUTHOR in author:
+            continue
+        for ns in git(repo, "diff-tree", "--root", "--no-commit-id", "-r",
+                      "--name-status", sha, "--", *patterns).splitlines():
+            parts = ns.split("\t")
+            if len(parts) >= 2:
+                status = parts[0][0]
+                out[parts[-1]] = "M" if status == "R" else status
+    return out
+
+
 def main():
     sidebar_changed = patch_sidebar()
     if sidebar_changed:
@@ -126,83 +193,113 @@ def main():
         git(EN_DIR, "add", "sidebar.md")
         git(EN_DIR, "commit", "-q", "-m", "sidebar: add missing page entries")
 
-    head = git(EN_DIR, "rev-parse", "HEAD")
-    sync_file = os.path.join(ZH_DIR, ".translation-sync")
-    baseline = open(sync_file).read().strip() if os.path.exists(sync_file) else ""
-    try:
-        git(EN_DIR, "rev-parse", "--verify", f"{baseline}^{{commit}}")
-    except subprocess.CalledProcessError:
-        baseline = ""
-    print(f"baseline: {baseline or '(none — full sync)'}")
+    en_head = git(EN_DIR, "rev-parse", "HEAD")
+    zh_head = git(ZH_DIR, "rev-parse", "HEAD")
+    en_base = read_baseline(os.path.join(ZH_DIR, ".translation-sync"), EN_DIR)
+    zh_base = read_baseline(os.path.join(EN_DIR, ".translation-sync"), ZH_DIR)
+    print(f"baselines: en={en_base[:12] or '(none — full sync)'} "
+          f"zh={zh_base[:12] or '(none — full sync)'}")
 
-    if baseline:
-        changed = git(EN_DIR, "diff", "--name-status", f"{baseline}..HEAD",
-                      "--", "*.md").splitlines()
-        todo = {(s[0], s[1]) for line in changed if (s := line.split("\t"))}
-        changed_assets = git(EN_DIR, "diff", "--name-only", f"{baseline}..HEAD",
-                             "--", "*.svg", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.webp", "*.js", "*.css").splitlines()
-    else:
-        todo = set()
-        changed_assets = []
+    en_md = human_changes(EN_DIR, en_base, MD_PATTERNS)
+    zh_md = human_changes(ZH_DIR, zh_base, MD_PATTERNS)
+    en_assets = human_changes(EN_DIR, en_base, ASSET_PATTERNS)
+    zh_assets = human_changes(ZH_DIR, zh_base, ASSET_PATTERNS)
+    # the sidebar patch is a bot commit, so force its (re)translation
+    if sidebar_changed:
+        en_md["sidebar.md"] = "M"
 
-    en_files = set(md_files(EN_DIR))
-    zh_files = set(md_files(ZH_DIR))
+    # same path human-edited on both sides: English wins
+    for p in sorted(set(en_md) & set(zh_md)):
+        print(f"conflict: {p} edited on both sides — English wins")
+        del zh_md[p]
+    for p in sorted(set(en_assets) & set(zh_assets)):
+        print(f"conflict: {p} edited on both sides — English wins")
+        del zh_assets[p]
 
-    to_translate = {p for st, p in todo if st in ("A", "M")} | (en_files - zh_files)
-    to_delete = {p for st, p in todo if st == "D"} | (zh_files - en_files)
+    en_pages, zh_pages = set(md_files(EN_DIR)), set(md_files(ZH_DIR))
+    en_asset_set, zh_asset_set = asset_files(EN_DIR), asset_files(ZH_DIR)
 
-    # static assets are copied verbatim, never translated
-    en_assets = {os.path.relpath(os.path.join(dp, f), EN_DIR)
-                 for dp, dns, fns in os.walk(EN_DIR) if ".git" not in dp.split(os.sep)
-                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp", "js", "css")}
-    zh_assets = {os.path.relpath(os.path.join(dp, f), ZH_DIR)
-                 for dp, dns, fns in os.walk(ZH_DIR) if ".git" not in dp.split(os.sep)
-                 for f in fns if f.rsplit(".", 1)[-1].lower() in ("svg", "png", "jpg", "jpeg", "gif", "webp", "js", "css")}
-    to_copy = set(changed_assets) | (en_assets - zh_assets)
-    to_delete |= zh_assets - en_assets
+    ez_delete = {p for p, s in en_md.items() if s == "D"}
+    ez_translate = ({p for p, s in en_md.items() if s in ("A", "M")}
+                    | (en_pages - zh_pages)) - ez_delete
+    ze_delete = {p for p, s in zh_md.items() if s == "D"}
+    ze_translate = ({p for p, s in zh_md.items() if s in ("A", "M")}
+                    | (zh_pages - en_pages)) - ze_delete - ez_delete
 
-    copied = []
-    for rel in sorted(to_copy):
-        src = os.path.join(EN_DIR, rel)
-        if not os.path.exists(src):
-            continue
-        dst = os.path.join(ZH_DIR, rel)
-        os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
-        subprocess.run(["cp", src, dst], check=True)
-        copied.append(rel)
-        print(f"copied asset {rel}")
+    ez_del_assets = {p for p, s in en_assets.items() if s == "D"}
+    ez_copy = ({p for p, s in en_assets.items() if s in ("A", "M")}
+               | (en_asset_set - zh_asset_set)) - ez_del_assets
+    ze_del_assets = {p for p, s in zh_assets.items() if s == "D"}
+    ze_copy = ({p for p, s in zh_assets.items() if s in ("A", "M")}
+               | (zh_asset_set - en_asset_set)) - ze_del_assets - ez_del_assets
 
-    translated, failed = [], []
-    for rel in sorted(to_translate):
-        src = open(os.path.join(EN_DIR, rel)).read()
-        print(f"translating {rel} ({len(src)} chars)")
-        try:
-            out = translate(src)
-        except Exception as e:
-            print(f"  FAILED {rel}: {e}", file=sys.stderr)
-            failed.append(rel)
-            continue
-        dst = os.path.join(ZH_DIR, rel)
-        os.makedirs(os.path.dirname(dst), exist_ok=True)
-        open(dst, "w").write(out if out.endswith("\n") else out + "\n")
-        translated.append(rel)
+    stats = {d: {"translated": [], "copied": [], "deleted": [], "failed": []}
+             for d in ("ez", "ze")}
 
-    for rel in sorted(to_delete):
-        p = os.path.join(ZH_DIR, rel)
-        if os.path.exists(p):
-            os.remove(p)
-            print(f"deleted {rel}")
+    def apply(direction, src_dir, dst_dir, to_translate, to_copy, to_delete,
+              src_lang, dst_lang):
+        st = stats[direction]
+        for rel in sorted(to_copy):
+            src = os.path.join(src_dir, rel)
+            if not os.path.exists(src):
+                continue
+            dst = os.path.join(dst_dir, rel)
+            os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
+            subprocess.run(["cp", src, dst], check=True)
+            st["copied"].append(rel)
+            print(f"copied asset {src_lang}->{dst_lang} {rel}")
+        for rel in sorted(to_translate):
+            src_path = os.path.join(src_dir, rel)
+            if not os.path.exists(src_path):
+                continue
+            text = open(src_path).read()
+            print(f"translating {src_lang}->{dst_lang} {rel} ({len(text)} chars)")
+            try:
+                out = translate(text, src_lang, dst_lang)
+            except Exception as e:
+                print(f"  FAILED {rel}: {e}", file=sys.stderr)
+                st["failed"].append(rel)
+                continue
+            dst = os.path.join(dst_dir, rel)
+            os.makedirs(os.path.dirname(dst) or ".", exist_ok=True)
+            open(dst, "w").write(out if out.endswith("\n") else out + "\n")
+            st["translated"].append(rel)
+        for rel in sorted(to_delete):
+            p = os.path.join(dst_dir, rel)
+            if os.path.exists(p):
+                os.remove(p)
+                st["deleted"].append(rel)
+                print(f"deleted {dst_lang} {rel}")
 
-    if not failed and (translated or copied or to_delete or not baseline):
-        open(sync_file, "w").write(head + "\n")
+    apply("ez", EN_DIR, ZH_DIR, ez_translate, ez_copy, ez_delete | ez_del_assets,
+          "en", "zh")
+    apply("ze", ZH_DIR, EN_DIR, ze_translate, ze_copy, ze_delete | ze_del_assets,
+          "zh", "en")
 
-    print(f"\n== summary: {len(translated)} translated, {len(copied)} assets copied, "
-          f"{len(to_delete)} deleted, {len(failed)} failed ==")
-    for rel in translated + copied:
-        print(f"  + {rel}")
-    if failed:
+    ez_active = any(stats["ez"][k] for k in ("translated", "copied", "deleted"))
+    ze_active = any(stats["ze"][k] for k in ("translated", "copied", "deleted"))
+
+    # Each side's marker records the counterpart HEAD its content now reflects.
+    # Bot commits are filtered out of future diffs, so the markers only need to
+    # anchor the window of human commits already processed.
+    if not stats["ez"]["failed"] and (ez_active or not en_base):
+        open(os.path.join(ZH_DIR, ".translation-sync"), "w").write(en_head + "\n")
+    if not stats["ze"]["failed"] and (ze_active or not zh_base):
+        open(os.path.join(EN_DIR, ".translation-sync"), "w").write(zh_head + "\n")
+
+    print(f"\n== summary: en->zh {len(stats['ez']['translated'])} translated, "
+          f"{len(stats['ez']['copied'])} copied, {len(stats['ez']['deleted'])} deleted, "
+          f"{len(stats['ez']['failed'])} failed | zh->en "
+          f"{len(stats['ze']['translated'])} translated, "
+          f"{len(stats['ze']['copied'])} copied, {len(stats['ze']['deleted'])} deleted, "
+          f"{len(stats['ze']['failed'])} failed ==")
+    for rel in stats["ez"]["translated"] + stats["ez"]["copied"]:
+        print(f"  en->zh + {rel}")
+    for rel in stats["ze"]["translated"] + stats["ze"]["copied"]:
+        print(f"  zh->en + {rel}")
+    if stats["ez"]["failed"] or stats["ze"]["failed"]:
         sys.exit(1)
-    if not translated and not copied and not to_delete and not sidebar_changed:
+    if not ez_active and not ze_active and not sidebar_changed:
         print("nothing to do")
 
 
