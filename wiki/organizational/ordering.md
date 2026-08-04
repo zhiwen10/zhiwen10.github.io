@@ -1,6 +1,6 @@
 # Ordering
 
-- To order something: contact {{ORDERING_CONTACT}}
+- To order something: contact, add new
 - Approval needed above: {{APPROVAL_THRESHOLD}}
 - Preferred vendors: {{VENDORS}}
 - Receiving address: {{SHIPPING_ADDRESS}}
