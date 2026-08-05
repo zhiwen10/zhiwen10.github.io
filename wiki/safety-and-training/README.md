@@ -1,15 +1,15 @@
-# Safety and training
+# Safety and Training
 
-Required trainings before working in the lab. See also [safety](../organizational/safety.md) for contacts and procedures.
+Training that must be completed before working in the lab. For contact information and procedures, also see [Safety](../organizational/safety.md).
 
-| Training | Who needs it | How to complete |
+| Training | Required For | How to Complete |
 |---|---|---|
-| Laboratory Safety Access Training | all research personnel | Sign up for Routine Training under Training Management on lab.smart.org.cn|
-| animal use training | Everyone on the animal protocol | follow the core facility account (公共技术中心公众号）on WeChat and sign up for training there. Usually once every two weeks|
-| {{TRAINING_1}} e.g. general lab safety | Everyone | {{HOW}} |
-| {{TRAINING_2}} e.g. chemical safety | Everyone handling chemicals | {{HOW}} |
+| Lab Safety Access Training | All researchers | Register for routine training via the training management system at lab.smart.org.cn |
+| Animal Use Training | All personnel in animal experiment protocols | Follow the Public Technology Center official account on WeChat and register for training there. Typically held every two weeks |
+| {{TRAINING_1}} e.g.: General Laboratory Safety | Everyone | {{HOW}} |
+| {{TRAINING_2}} e.g.: Chemical Safety | All personnel handling chemicals | {{HOW}} |
 
 
 
-- Training records are kept: {{RECORDS_LOCATION}}
-- Annual refreshers: {{REFRESHER_POLICY}}
+- Training record storage location: {{RECORDS_LOCATION}}
+- Annual refresher training policy: {{REFRESHER_POLICY}}
