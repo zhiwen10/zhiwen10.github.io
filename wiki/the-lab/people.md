@@ -16,7 +16,7 @@ _Lab mailing address:_
 | --- | --- | --- | --- | --- |
 | Zhiwen Ye 叶智文| 2026-07-20 | P.I. | yezhiwen@smart.org.cn | 18879390236 |
 | Sicheng Lai 赖思澄 | 2026-07-28 | Visiting Student | sicheng.lai.25@ucl.ac.uk |18126178739|
-| Weiwei Yin 殷伟伟 | 2026-08-03 | Research Assistant | yinweiwei@smart.org.cn | PHONE |
+| Weiwei Yin 殷伟伟 | 2026-08-03 | Research Assistant | yinweiwei@smart.org.cn | 18255155797 |
 
 
 
