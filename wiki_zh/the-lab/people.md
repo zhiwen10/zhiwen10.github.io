@@ -16,7 +16,7 @@ _实验室邮寄地址:_
 | --- | --- | --- | --- | --- |
 | Zhiwen Ye 叶智文| 2026-07-20 | 课题组长 | yezhiwen@smart.org.cn | 18879390236 |
 | Sicheng Lai 赖思澄 | 2026-07-28 | 访问学生 | sicheng.lai.25@ucl.ac.uk |18126178739|
-| Weiwei Yin 殷伟伟 | 2026-08-03 | 研究助理 | yinweiwei@smart.org.cn | 电话 |
+| Weiwei Yin 殷伟伟 | 2026-08-03 | 研究助理 | yinweiwei@smart.org.cn | 18255155797 |
 
 
 ## 链接
