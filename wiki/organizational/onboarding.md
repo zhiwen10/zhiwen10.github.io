@@ -4,7 +4,7 @@ Welcome to YeLab! Work through this list in your first week. Ask PI Zhiwen if an
 
 ## Day 1 — accounts & access
 
-- [ ] Collect your badge (contact Ms. Na Li)
+- [ ] Collect your badge/confirm your workstation/attend administrative training (contact Ms. Na Li)
 - [ ] Get added to the **YeLab Gitee org** (`gitee.com/ye-lab`) — see below
 - [ ] Get added to the lab chat group (Feishu/WeChat: contact Zhiwen or Ms. Li)
 - [ ] Get added to the lab calendar — see [calendar](calendar.md)
