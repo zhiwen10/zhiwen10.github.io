@@ -1,52 +1,50 @@
-# Onboarding
+# Onboarding Guide
 
-Welcome to YeLab! Work through this list in your first week. Ask PI Zhiwen if anything is unclear.
+Welcome to YeLab! Please complete the following checklist during your first week. If anything is unclear, please ask PI Zhiwen.
 
-## Day 1 — accounts & access
+## Day 1 — Accounts & Access
 
-- [ ] Collect your badge/confirm your workstation/attend administrative training (contact Ms. Na Li)
-- [ ] Get added to the **YeLab Gitee org** (`gitee.com/ye-lab`) — see below
-- [ ] Get added to the lab chat group (Feishu/WeChat: contact Zhiwen or Ms. Li)
-- [ ] Get added to the lab calendar — see [calendar](calendar.md)
+- [ ] Pick up your badge / confirm your desk / attend administrative training (contact Ms. Li Na)
+- [ ] Join the **YeLab Gitee Organization** (`gitee.com/ye-lab`) — see below for details
+- [ ] Join the lab group chat (Feishu / WeChat: contact Zhiwen or Ms. Li)
+- [ ] Join the lab calendar — see [Calendar](calendar.md)
 
-## Week 1 — environment
+## Week 1 — Environment Setup
 
-- [ ] Complete required trainings — see [safety and training](../safety-and-training/README.md)
-- [ ] Set up your dev environment — see [python](../code/python.md)
-- [ ] Read the [Git & Gitee policy](../code/git-gitee.md)
-- [ ] Get access to lab compute servers — see [lab computers](../the-lab/computers.md) <mark>[to-do]</mark>
-- [ ] Read the [data server](../experimental/data-server.md) and [data backup](../experimental/data-backup.md) pages <mark>[to-do]</mark>
+- [ ] Complete mandatory training — see [Safety & Training](../safety-and-training/README.md)
+- [ ] Configure your development environment — see [Python](../code/python.md)
+- [ ] Read the [Git & Gitee Guidelines](../code/git-gitee.md)
+- [ ] Obtain access to the lab compute servers — see [Lab Computers](../the-lab/computers.md) <mark>[TODO]</mark>
+- [ ] Read the [Data Server](../experimental/data-server.md) and [Data Backup](../experimental/data-backup.md) pages <mark>[TODO]</mark>
 
-## Week 1 — research
+## Week 1 — Research
 
 - [ ] Meet with Zhiwen to discuss your project
-- [ ] Read the [mission statement](../the-lab/mission-statement.md)
-- [ ] Make a starter reading list
-- [ ] Attend your first group meeting — see [meetings](meetings.md)
+- [ ] Read the [Lab Mission Statement](../the-lab/mission-statement.md)
+- [ ] Create an initial reading list
+- [ ] Attend your first group meeting — see [Meeting Schedule](meetings.md)
 
+## Gitee Organization
 
-## Gitee organization
+The lab's code is hosted under the **ye-lab** organization on Gitee: https://gitee.com/ye-lab; or https://edu.gitee.com/ye-lab.
+These two sites share the same backend but have different front-end interfaces.
+We use the free education edition (edu.gitee.com/ye-lab).
+The enterprise edition (gitee.com/ye-lab) usually costs 400–500 CNY per person, so we got a good deal.
 
-The lab's code lives under the **ye-lab** org on Gitee: https://gitee.com/ye-lab; or https://edu.gitee.com/ye-lab.
-These two sites are the same backend, but two different frontend interfaces. 
-We got the education free version (edu.gitee.com/ye-lab). 
-They usually charge for 400-500RMB/person enterprise version (gitee.com/ye-lab), so we got a bargain. 
-
-To get access:
+Steps to gain access:
 
 1. Register a personal Gitee account at https://gitee.com
-2. i will then send you an invitation link through feishu or email to join the group (ye-lab)
-3. You'll be added to the org with a team role, usually as an admin
-4. Install git and connect it to Gitee — see [Git & Gitee policy](../code/git-gitee.md)
+2. I will then send you an invitation link to join the group (ye-lab) via Feishu or email
+3. You will be added to the organization as a team member, usually with admin privileges
+4. Install Git and connect it to Gitee — see [Git & Gitee Guidelines](../code/git-gitee.md)
 
-> Why Gitee and not GitHub? GitHub is unreachable from some lab locations/networks. Gitee is the lab's primary platform; selected repos are mirrored to GitHub for international visibility. See [Git & Gitee policy](../code/git-gitee.md).
+> Why Gitee instead of GitHub? Some lab locations/networks cannot access GitHub. Gitee is the lab's primary platform; select repositories are mirrored to GitHub to increase international visibility. See [Git & Gitee Guidelines](../code/git-gitee.md).
 
-## Other accounts & services
+## Other Accounts & Services
 
-| Service | URL / address | Purpose | How to get access |
+| Service | URL / Address | Purpose | How to Get Access |
 |---|---|---|---|
-| Lab calendar | Feishu | Meetings, deadlines, talks | Zhiwen|
-| Chat group | Feishu, WeChat | Daily communication | Na Li |
-| File share <mark>[to-do]</mark>| {{NAS}} | Shared datasets, papers | Zhiwen|
-| Reference manager <mark>[to-do]</mark> | {{ZOTERO}} | Shared paper library | Zhiwen |
-
+| Lab Calendar | Feishu | Meetings, deadlines, seminars | Zhiwen |
+| Group Chat | Feishu, WeChat | Daily communication | Li Na |
+| File Sharing <mark>[TODO]</mark> | {{NAS}} | Shared datasets, literature | Zhiwen |
+| Reference Manager <mark>[TODO]</mark> | {{ZOTERO}} | Shared literature library | Zhiwen |
