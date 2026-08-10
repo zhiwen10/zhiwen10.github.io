@@ -177,10 +177,10 @@
 <script defer src="{{ '/assets/js/jupyter_new_tab.js' | relative_url | bust_file_cache }}"></script>
 
 <!-- Badges -->
-{% if site.enable_publication_badges.altmetric %}
+{% if site.enable_publication_badges.altmetric and page.url contains 'publication' %}
   <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script>
 {% endif %}
-{% if site.enable_publication_badges.dimensions %}
+{% if site.enable_publication_badges.dimensions and page.url contains 'publication' %}
   <script async src="https://badge.dimensions.ai/badge.js"></script>
 {% endif %}
 
@@ -314,3 +314,12 @@
 {% if site.newsletter.enabled %}
   <script defer src="{{ '/assets/js/newsletter.js' | relative_url | bust_file_cache }}"></script>
 {% endif %}
+
+<!-- Service worker: instant repeat visits (stale-while-revalidate for assets, network-first for HTML) -->
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/sw.js").catch(() => {});
+    });
+  }
+</script>

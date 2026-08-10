@@ -1,0 +1,85 @@
+name: Sync wiki translations (en <-> zh)
+
+on:
+  schedule:
+    - cron: "4,19,34,49 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Clone both Gitee repos
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          rm -rf /tmp/wiki-en /tmp/wiki-zh
+          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" /tmp/wiki-en
+          git clone "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" /tmp/wiki-zh
+
+      - name: Sync translations via Kimi API (both directions)
+        id: translate
+        env:
+          MOONSHOT_API_KEY: ${{ secrets.MOONSHOT_API_KEY }}
+          MOONSHOT_MODEL: kimi-k2.6
+        run: |
+          python3 .github/scripts/translate_wiki.py /tmp/wiki-en /tmp/wiki-zh | tee /tmp/translate.log
+          if grep -q "nothing to do" /tmp/translate.log; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Push translations to Gitee (zh repo)
+        if: steps.translate.outputs.changed == 'true'
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          cd /tmp/wiki-zh
+          git config user.name "wiki-translator[bot]"
+          git config user.email "translator@yelab.local"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "Auto-translate from yelab-wiki@$(git -C /tmp/wiki-en rev-parse --short HEAD)
+
+            $(grep '^  en->zh + ' /tmp/translate.log | sed 's/^  en->zh + /- /')"
+            git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" main
+            git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" HEAD:main
+          fi
+
+      - name: Push back-translations to Gitee (en repo)
+        if: steps.translate.outputs.changed == 'true'
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          cd /tmp/wiki-en
+          git config user.name "wiki-translator[bot]"
+          git config user.email "translator@yelab.local"
+          git add -A
+          if ! git diff --cached --quiet; then
+            if grep -q '^  zh->en + ' /tmp/translate.log; then
+              git commit -m "Auto-translate from yelab-wiki-zh@$(git -C /tmp/wiki-zh rev-parse --short HEAD)
+
+              $(grep '^  zh->en + ' /tmp/translate.log | sed 's/^  zh->en + /- /')"
+            else
+              git commit -m "translation-sync: zh caught up at $(git -C /tmp/wiki-zh rev-parse --short HEAD)"
+            fi
+            git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" main
+            git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" HEAD:main
+          fi
+
+      # Chain straight into publishing instead of waiting for sync-wiki's cron.
+      - name: Trigger wiki publish sync
+        if: steps.translate.outputs.changed == 'true'
+        run: |
+          curl -sf -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/sync-wiki.yml/dispatches" \
+            -d '{"ref":"main"}'

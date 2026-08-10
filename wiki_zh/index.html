@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>YeLab Wiki 中文</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome" />
+  <meta name="description" content="YeLab 实验室维基：入职、计算资源、工作流程、会议">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="vendor/vue.css">
+  <link rel="stylesheet" href="vendor/sidebar.min.css">
+</head>
+<body>
+  <nav class="app-nav">
+    <a href="/wiki/">En</a>
+    <a href="/wiki_zh/" class="active">中文</a>
+  </nav>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'YeLab Wiki',
+      repo: 'https://gitee.com/ye-lab/yelab-wiki-zh',
+      loadSidebar: 'sidebar.md',
+      subMaxLevel: 2,
+      auto2top: true,
+      homepage: 'README.md',
+      search: 'auto'
+    }
+  </script>
+  <script src="vendor/docsify.min.js"></script>
+  <script src="vendor/search.min.js"></script>
+  <script src="vendor/docsify-sidebar-collapse.min.js"></script>
+</body>
+</html>

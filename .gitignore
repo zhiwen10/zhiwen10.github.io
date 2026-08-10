@@ -11,3 +11,6 @@ assets/libs/
 node_modules/
 vendor
 .idea
+# wiki viewer assets synced from gitee (not Ruby vendor/)
+!wiki/vendor/
+!wiki_zh/vendor/

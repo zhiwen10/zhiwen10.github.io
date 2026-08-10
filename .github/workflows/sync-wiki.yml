@@ -1,0 +1,55 @@
+name: Sync lab wiki from Gitee
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pull latest wiki from Gitee (English)
+        run: |
+          rm -rf /tmp/yelab-wiki
+          git clone --depth 1 https://gitee.com/ye-lab/yelab-wiki.git /tmp/yelab-wiki
+          rsync -a --delete --exclude='.git' --exclude='zh/' /tmp/yelab-wiki/ wiki/
+
+      - name: Pull latest wiki from Gitee (Chinese, private)
+        env:
+          GITEE_TOKEN: ${{ secrets.GITEE_TOKEN }}
+        run: |
+          rm -rf /tmp/yelab-wiki-zh
+          git clone --depth 1 "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" /tmp/yelab-wiki-zh
+          rsync -a --delete --exclude='.git' /tmp/yelab-wiki-zh/ wiki_zh/
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add wiki/ wiki_zh/
+          if git diff --cached --quiet; then
+            echo "Wiki already up to date."
+          else
+            git commit -m "Sync wiki from gitee.com/ye-lab/yelab-wiki"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+        id: commit
+
+      # Pushes made with GITHUB_TOKEN do not trigger other workflows
+      # (GitHub anti-recursion rule), so kick off the site deploy explicitly.
+      - name: Trigger site deploy
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          curl -sf -X POST \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/workflows/deploy.yml/dispatches" \
+            -d '{"ref":"main"}'

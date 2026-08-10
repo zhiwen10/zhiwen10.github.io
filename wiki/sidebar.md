@@ -1,0 +1,46 @@
+- [Home](README.md)
+- **The Lab**
+  - [Mission statement](the-lab/mission-statement.md)
+  - [Expectations](the-lab/expectations.md)
+  - [People and contact info](the-lab/people.md)
+  - [Lab computers](the-lab/computers.md)
+- **Organizational**
+  - [Lab meetings](organizational/meetings.md)
+  - [Onboarding](organizational/onboarding.md)
+  - [Calendar](organizational/calendar.md)
+  - [Vacations](organizational/vacations.md)
+  - [Ordering](organizational/ordering.md)
+  - [Conferences](organizational/conferences.md)
+  - [Safety](organizational/safety.md)
+- **Science**
+  - [Who to ask about what](science/expert-list.md)
+  - [Mailing lists](science/mailing-lists.md)
+  - [Events calendars](science/events-calendars.md)
+  - [Reading list](science/reading-list.md)
+- **Experimental**
+  - [General procedures](experimental/general.md)
+  - [Protocols](experimental/protocols.md)
+  - [Data server](experimental/data-server.md)
+  - [Data backup](experimental/data-backup.md)
+- **Animals**
+  - [Animals hub](animals/README.md)
+  - [Protocol](animals/protocol.md)
+  - [Ordering animals](animals/ordering.md)
+  - [Husbandry](animals/husbandry.md)
+- **Safety and training**
+  - [Required trainings](safety-and-training/README.md)
+- **Code**
+  - [Git & Gitee policy](code/git-gitee.md)
+  - [Python](code/python.md)
+  - [Shared repos](code/shared-repos.md)
+  - [Pipelines](code/pipelines.md)
+- **Hardware**
+  - [Equipment](hardware/README.md)
+- **Career development**
+  - [Career](career/README.md)
+- **Funding**
+  - [Fellowships & grants](funding/README.md)
+- **Meta**
+  - [How this website works](how-this-website-works.md)
+- **organizational/**
+  - [templates](organizational/templates.md)

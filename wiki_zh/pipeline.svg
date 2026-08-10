@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="330" font-family="Helvetica, Arial, sans-serif" font-size="13">
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#555"/>
+    </marker>
+    <marker id="arrB" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#1565c0"/>
+    </marker>
+    <marker id="arrG" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L9,3 L0,6 Z" fill="#2e7d32"/>
+    </marker>
+  </defs>
+
+  <!-- editable repos -->
+  <rect x="10" y="30" width="190" height="64" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="105" y="56" text-anchor="middle" font-weight="bold">yelab-wiki (Gitee)</text>
+  <text x="105" y="74" text-anchor="middle">edit &amp; push in English</text>
+
+  <rect x="10" y="236" width="190" height="64" rx="8" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="105" y="262" text-anchor="middle" font-weight="bold">yelab-wiki-zh (Gitee)</text>
+  <text x="105" y="280" text-anchor="middle">edit &amp; push 中文</text>
+
+  <!-- translation action -->
+  <rect x="270" y="115" width="200" height="100" rx="8" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="370" y="143" text-anchor="middle" font-weight="bold">translate-wiki.yml</text>
+  <text x="370" y="161" text-anchor="middle">every 15 min · GitHub Action</text>
+  <text x="370" y="179" text-anchor="middle">Kimi API (k2.6)</text>
+  <text x="370" y="197" text-anchor="middle" fill="#777">human edits translated both ways</text>
+
+  <!-- publish action -->
+  <rect x="530" y="115" width="180" height="100" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="620" y="143" text-anchor="middle" font-weight="bold">sync-wiki.yml</text>
+  <text x="620" y="161" text-anchor="middle">every 15 min · GitHub Action</text>
+  <text x="620" y="179" text-anchor="middle">zhiwen10.github.io</text>
+  <text x="620" y="197" text-anchor="middle" fill="#777">copies repos into wiki/ + wiki_zh/</text>
+
+  <!-- pages -->
+  <rect x="760" y="115" width="150" height="100" rx="8" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="835" y="141" text-anchor="middle" font-weight="bold">deploy.yml → Pages</text>
+  <text x="835" y="159" text-anchor="middle">Jekyll rebuild</text>
+  <text x="835" y="181" text-anchor="middle" font-weight="bold">yezhiwen.com/wiki/</text>
+  <text x="835" y="199" text-anchor="middle" font-weight="bold">yezhiwen.com/wiki_zh/</text>
+
+  <!-- bidirectional arrows: en repo <-> translate -->
+  <line x1="150" y1="94" x2="300" y2="122" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arrB)"/>
+  <line x1="340" y1="122" x2="190" y2="94" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arrB)"/>
+
+  <!-- bidirectional arrows: zh repo <-> translate -->
+  <line x1="300" y1="208" x2="150" y2="236" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrG)"/>
+  <line x1="190" y1="236" x2="340" y2="208" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arrG)"/>
+
+  <!-- translate -> publish -> pages -->
+  <line x1="470" y1="165" x2="523" y2="165" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+  <line x1="710" y1="165" x2="753" y2="165" stroke="#555" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- timing labels -->
+  <text x="215" y="100" fill="#777" font-size="11">≤20 min cross-language</text>
+  <text x="215" y="230" fill="#777" font-size="11">≤20 min cross-language</text>
+  <text x="478" y="155" fill="#777" font-size="11">triggered</text>
+  <text x="718" y="155" fill="#777" font-size="11">≤15 min</text>
+</svg>
