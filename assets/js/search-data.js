@@ -83,6 +83,12 @@ ninja.data = [{
           section: "News",},{id: "news-welcome-weiwei-yin-who-joins-the-lab-as-a-research-assistant-weiwei-previously-worked-as-a-research-assistant-in-prof-zengcai-guo-s-lab-at-tsinghua-university",
           title: '🎉🎉Welcome Weiwei Yin, who joins the lab as a Research Assistant. Weiwei previously...',
           description: "",
+          section: "News",},{id: "news-欢迎研究助理王博加入实验室-王博最近从南方科技大学获得神经科学硕士学位-硕士期间在何思聪教授的指导下完成了多个优秀项目",
+          title: '🎉🎉欢迎研究助理王博加入实验室！王博最近从南方科技大学获得神经科学硕士学位，硕士期间在何思聪教授的指导下完成了多个优秀项目。',
+          description: "",
+          section: "News",},{id: "news-welcome-bo-wang-who-joins-the-ye-lab-as-a-research-assistant-bo-recently-earned-his-master-s-degree-in-neuroscience-from-sustech-where-he-completed-several-excellent-projects-with-prof-sicong-he",
+          title: '🎉🎉Welcome Bo Wang, who joins the Ye Lab as a Research Assistant! Bo...',
+          description: "",
           section: "News",},{
         id: 'social-github',
         title: 'GitHub',
