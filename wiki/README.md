@@ -18,7 +18,7 @@ Welcome to the YeLab wiki — the lab's central knowledge base.
 - [Calendar](organizational/calendar.md) — the shared lab calendar
 - [Softwares](organizational/softwares.md) — softwares
 - [Vacations](organizational/vacations.md) — time-off policy <mark>[to-do]</mark>
-- [Ordering](organizational/ordering.md) — how to buy things <mark>[to-do]</mark>
+- [Ordering](organizational/ordering.md) — how to buy things
 - [Conferences](organizational/conferences.md) — travel and conference logistics <mark>[to-do]</mark>
 - [Safety](organizational/safety.md) — lab safety contacts and procedures <mark>[to-do]</mark>
 

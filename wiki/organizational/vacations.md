@@ -1,5 +1,11 @@
 # Vacation
 
-- Policy: {{VACATION_POLICY}} — e.g., number of days, notice period, flexible scheduling.
-- Before taking vacation, notify {{PI_NAME}} and add the dates to the lab [calendar](calendar.md).
-- {{UNIVERSITY_POLICY_LINK}} — official human resources policy, if applicable
+Half-day absences don't require notice. If you'll be out for a full day, please log it on the lab calendar in Feishu.
+
+For extended absences (two days or more), please notify the PI as a courtesy.
+
+We care about results, not clock-watching.
+
+The PI checks in on progress regularly, and you'll get feedback if output falls short.
+
+
