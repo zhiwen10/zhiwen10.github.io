@@ -8,6 +8,7 @@
   - [Lab meetings](organizational/meetings.md)
   - [Onboarding](organizational/onboarding.md)
   - [Calendar](organizational/calendar.md)
+  - [Softwares](organizational/softwares.md)
   - [Vacations](organizational/vacations.md)
   - [Ordering](organizational/ordering.md)
   - [Conferences](organizational/conferences.md)
