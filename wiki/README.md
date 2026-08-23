@@ -16,6 +16,7 @@ Welcome to the YeLab wiki — the lab's central knowledge base.
 - [Lab meetings](organizational/meetings.md) — schedule and notes archive 
 - [Onboarding](organizational/onboarding.md) — new member checklist, accounts, git access 
 - [Calendar](organizational/calendar.md) — the shared lab calendar
+- [Softwares](organizational/softwares.md) — softwares
 - [Vacations](organizational/vacations.md) — time-off policy <mark>[to-do]</mark>
 - [Ordering](organizational/ordering.md) — how to buy things <mark>[to-do]</mark>
 - [Conferences](organizational/conferences.md) — travel and conference logistics <mark>[to-do]</mark>
