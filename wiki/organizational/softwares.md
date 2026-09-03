@@ -30,6 +30,17 @@ I found a good [permanent version](https://down.jslingdu09.cn/adobe?channel=dd-0
 
 Just download and unzip the installation files, and run Setup.exe and crack.exe as instructed in some installation folders. Make sure your windows security do not hide your setup.exe file. If it did, you can get it back by going to the Protection history/Threat restored section to get it back. Enjoy Adobe!
 
+# 5, Autodesk
+
+We have free software from Autodesk Education, for designing 3d printing files. I was the first person registering SMART as an institute there. Some commonly used software for 3d printing files include AutoCAD, fusion, inventor. 
+Use this website for detailed verification instructions, type in "深圳医学科学院" when you are asked to fill in your university or institute. 
+https://www.autodesk.com/support/account/education/students-educators/get-started
+
+They might ask you to provide a certificate or paperwork to prove that you are affiliated with the institute. 
+
+I had a problem with the authentication (exceeded number of times for authentication). I contacted the Autodesk customer service on their webpage, and they solved it for me on the spot.
+
+
 
 
 
