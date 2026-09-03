@@ -16,9 +16,13 @@ is what keeps the two directions from chasing each other in an endless loop.
 If the same path was human-edited on both sides, English wins. Static assets
 (svg/png/jpg/jpeg/gif/webp/js/css) are copied verbatim, never translated.
 
-Converges even with a missing/stale baseline: pages present on only one side
-are translated to the other, and nothing is deleted without an explicit
-human deletion on record.
+Converges from a missing baseline (first run): pages present on only one
+side are translated to the other, nothing is deleted without an explicit
+human deletion on record, and the baseline marker is written and pushed so
+later runs track modifications. A baseline marker whose recorded commit no
+longer exists in the counterpart's history (history rewrite or corruption)
+is a hard error: the run fails loudly instead of silently skipping
+modifications to pages that exist on both sides.
 
 Env:
   MOONSHOT_API_KEY   (required)
@@ -149,18 +153,31 @@ def translate(text, src_lang, dst_lang):
             time.sleep(30 * (attempt + 1))
 
 
-def read_baseline(marker_path, repo):
-    """The counterpart commit hash this repo's content was last synced to,
-    validated against the counterpart's history ('' if missing/stale)."""
-    if os.path.exists(marker_path):
-        base = open(marker_path).read().strip()
-        if base:
-            try:
-                git(repo, "rev-parse", "--verify", f"{base}^{{commit}}")
-                return base
-            except subprocess.CalledProcessError:
-                pass
-    return ""
+def read_baseline(marker_path, repo, marker_repo, counterpart_repo):
+    """The counterpart commit hash this repo's content was last synced to.
+
+    Missing/empty marker -> '' (initial full sync; this run then writes and
+    pushes the marker so later runs can track modifications). A marker whose
+    commit no longer exists in the counterpart's history means the history
+    was rewritten or the file was corrupted: fail loudly, because running on
+    would silently skip modifications to pages that exist on both sides."""
+    if not os.path.exists(marker_path):
+        return ""
+    base = open(marker_path).read().strip()
+    if not base:
+        return ""
+    try:
+        git(repo, "rev-parse", "--verify", f"{base}^{{commit}}")
+        return base
+    except subprocess.CalledProcessError:
+        sys.exit(
+            f"ERROR: {marker_repo}/.translation-sync records {base[:12]}, which\n"
+            f"is not a commit in {counterpart_repo}'s history (history rewritten or\n"
+            f"marker corrupted?). Stopping instead of silently skipping edits.\n"
+            f"Fix: set {marker_repo}/.translation-sync to a {counterpart_repo} commit\n"
+            f"from before the divergence (e.g. `git rev-list -1 --before=<date> main`),\n"
+            f"commit it, then rerun this workflow."
+        )
 
 
 def human_changes(repo, baseline, patterns):
@@ -195,8 +212,10 @@ def main():
 
     en_head = git(EN_DIR, "rev-parse", "HEAD")
     zh_head = git(ZH_DIR, "rev-parse", "HEAD")
-    en_base = read_baseline(os.path.join(ZH_DIR, ".translation-sync"), EN_DIR)
-    zh_base = read_baseline(os.path.join(EN_DIR, ".translation-sync"), ZH_DIR)
+    en_base = read_baseline(os.path.join(ZH_DIR, ".translation-sync"), EN_DIR,
+                            "yelab-wiki-zh", "yelab-wiki")
+    zh_base = read_baseline(os.path.join(EN_DIR, ".translation-sync"), ZH_DIR,
+                            "yelab-wiki", "yelab-wiki-zh")
     print(f"baselines: en={en_base[:12] or '(none — full sync)'} "
           f"zh={zh_base[:12] or '(none — full sync)'}")
 
@@ -281,11 +300,16 @@ def main():
 
     # Each side's marker records the counterpart HEAD its content now reflects.
     # Bot commits are filtered out of future diffs, so the markers only need to
-    # anchor the window of human commits already processed.
+    # anchor the window of human commits already processed. A marker written
+    # here must be pushed even when nothing else changed (otherwise a missing
+    # baseline would never be established), so it counts towards "changed".
+    markers_updated = False
     if not stats["ez"]["failed"] and (ez_active or not en_base):
         open(os.path.join(ZH_DIR, ".translation-sync"), "w").write(en_head + "\n")
+        markers_updated = True
     if not stats["ze"]["failed"] and (ze_active or not zh_base):
         open(os.path.join(EN_DIR, ".translation-sync"), "w").write(zh_head + "\n")
+        markers_updated = True
 
     print(f"\n== summary: en->zh {len(stats['ez']['translated'])} translated, "
           f"{len(stats['ez']['copied'])} copied, {len(stats['ez']['deleted'])} deleted, "
@@ -299,7 +323,8 @@ def main():
         print(f"  zh->en + {rel}")
     if stats["ez"]["failed"] or stats["ze"]["failed"]:
         sys.exit(1)
-    if not ez_active and not ze_active and not sidebar_changed:
+    if not ez_active and not ze_active and not sidebar_changed \
+            and not markers_updated:
         print("nothing to do")
 
 

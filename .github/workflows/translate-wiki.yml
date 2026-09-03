@@ -49,9 +49,11 @@ jobs:
             git commit -m "Auto-translate from yelab-wiki@$(git -C /tmp/wiki-en rev-parse --short HEAD)
 
             $(grep '^  en->zh + ' /tmp/translate.log | sed 's/^  en->zh + /- /')"
-            git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" main
-            git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" HEAD:main
           fi
+          # pull/push unconditionally: the translate script may have committed
+          # locally (e.g. sidebar patch), which leaves nothing staged
+          git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" main
+          git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki-zh.git" HEAD:main
 
       - name: Push back-translations to Gitee (en repo)
         if: steps.translate.outputs.changed == 'true'
@@ -70,9 +72,11 @@ jobs:
             else
               git commit -m "translation-sync: zh caught up at $(git -C /tmp/wiki-zh rev-parse --short HEAD)"
             fi
-            git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" main
-            git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" HEAD:main
           fi
+          # pull/push unconditionally: the translate script may have committed
+          # locally (e.g. sidebar patch), which leaves nothing staged
+          git pull --rebase "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" main
+          git push "https://oauth2:${GITEE_TOKEN}@gitee.com/ye-lab/yelab-wiki.git" HEAD:main
 
       # Chain straight into publishing instead of waiting for sync-wiki's cron.
       - name: Trigger wiki publish sync
