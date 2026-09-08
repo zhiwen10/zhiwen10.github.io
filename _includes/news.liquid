@@ -20,7 +20,7 @@
           <tr>
             <th scope="row" style="width: 20%">
               {% if cur_lang == 'zh' %}
-                {{ item.date | date: '%Y年%-m月%-d日' }}
+                {{ item.date | date: '%Y-%m-%d' }}
               {% else %}
                 {{ item.date | date: '%b %d, %Y' }}
               {% endif %}
