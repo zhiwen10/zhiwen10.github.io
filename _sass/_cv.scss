@@ -2,6 +2,19 @@
  * CV shared styles
  *****************************/
 
+.cv h6 {
+  // the global h1–h6 rule (600) makes CV entry lines heavy; keep entry
+  // text at normal weight like the publications page (position titles
+  // stay bold via Bootstrap's .font-weight-bold)
+  font-weight: 400;
+}
+
+.cv .card ol.bibliography {
+  // separate the section label ("First-author publications", "Other
+  // publications") from the first entry
+  margin-top: 1.5rem;
+}
+
 .cv-basics-row {
   display: flex;
   align-items: flex-start;
