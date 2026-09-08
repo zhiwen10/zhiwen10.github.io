@@ -3,22 +3,11 @@ layout: cv2
 permalink: /cv2/
 title: 简历
 lang: zh
+lang_ref: cv
 nav: false
 nav_order: 5
 cv_pdf: # you can also use external links here
-description: 
-_styles: |
-  .cv-profile-photo { width: 75%; }
+description:
 toc:
-  sidebar: 
+  sidebar:
 ---
-
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid loading="eager" path="assets/img/prof_pic_new.jpg" title="example image" class="img-fluid z-depth-1 cv-profile-photo" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-    </div>
-</div>

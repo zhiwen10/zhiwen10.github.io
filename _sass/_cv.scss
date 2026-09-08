@@ -2,6 +2,32 @@
  * CV shared styles
  *****************************/
 
+.cv-basics-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.5rem;
+
+  > table {
+    flex: 1 1 auto;
+    margin-bottom: 0;
+  }
+}
+
+.cv-basics-photo {
+  flex: 0 0 150px;
+  margin-top: 0.25rem;
+
+  figure {
+    margin: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .cv-basics-photo {
+    flex-basis: 110px;
+  }
+}
+
 div.container-link-button {
   margin-right: 0.5rem;
 }
