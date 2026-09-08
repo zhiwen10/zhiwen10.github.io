@@ -13,6 +13,24 @@ html {
 
 body {
   font-family: $font-family-sans-serif;
+  // mdb.min.css sets body font-weight to 300; keep body text at normal
+  // weight so it matches card content (.card resets to 400)
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  // mdb.min.css forces 300; match .team-card-title weight
+  font-weight: 600;
+}
+
+.post article {
+  // match .team-card-bio text size across page content
+  font-size: 0.95rem;
 }
 
 // Typography
@@ -39,7 +57,7 @@ hr {
 table {
   td,
   th {
-    font-size: 1rem;
+    font-size: 0.95rem;
     padding: 1px 1rem 1px 0;
   }
 
@@ -757,7 +775,7 @@ footer.sticky-bottom {
       list-style: none;
       padding-left: 0;
       margin-top: 0;
-      font-weight: 300;
+      font-weight: 400;
 
       > li {
         border-top: 1px solid var(--global-divider-color);
@@ -858,7 +876,7 @@ footer.sticky-bottom {
   .desc {
     color: var(--global-text-color-light);
     font-size: 1.25rem;
-    font-weight: 300;
+    font-weight: 400;
     font-style: italic;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
