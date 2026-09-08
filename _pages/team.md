@@ -83,7 +83,7 @@ _styles: |
 <div class="page-section">
   <h2>Join Us</h2>
   <div class="recruitment-notice">
-    <p>The Ye Lab is now recruiting Associate/Assistant Researchers, postdoctoral fellows, research assistants, a laboratory manager, and visiting students, across areas spanning neuroscience, computation neuroscience, machine learning, and mechanical/electronic/automation engineering. We warmly welcome early-career scholars with strong curiosity and a passion for research to join us.</p>
+    <p>The Ye Lab is now recruiting Associate/Assistant Researchers, postdoctoral fellows, research assistants, and visiting students, across areas spanning neuroscience, computation neuroscience, machine learning, and mechanical/electronic/automation engineering. We warmly welcome early-career scholars with strong curiosity and a passion for research to join us.</p>
     <p>Please send application materials and reference letters to the lab email address: <span><i class="fa-solid fa-envelope"></i>systemsneuro@smart.org.cn</span></p>
     <p>For more details, please visit: <a href="https://smart.org.cn/en/career/research/1223.html" target="_blank" rel="noopener noreferrer">Recruitment in the Ye Lab</a>.</p>
   </div>

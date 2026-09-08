@@ -83,7 +83,7 @@ _styles: |
 <div class="page-section">
   <h2>加入我们</h2>
   <div class="recruitment-notice">
-    <p>叶智文课题组现面向社会公开招聘副研究员/助理研究员、博士后、科研助理、实验室管理员及访问学生，研究方向涵盖神经科学、神经计算、机器学习及机械/电子/自动化工程。欢迎充满好奇心与科研热情的青年学者加入。</p>
+    <p>叶智文课题组现面向社会公开招聘副研究员/助理研究员、博士后、科研助理及访问学生，研究方向涵盖神经科学、神经计算、机器学习及机械/电子/自动化工程。欢迎充满好奇心与科研热情的青年学者加入。</p>
     <p>简历投递及推荐信请发送至实验室邮箱：<span><i class="fa-solid fa-envelope"></i>systemsneuro@smart.org.cn</span></p>
     <p>详见：<a href="https://smart.org.cn/career/research-lab/1193.html" target="_blank" rel="noopener noreferrer">深圳医学科学院叶智文课题组招聘公告</a>。</p>
   </div>
