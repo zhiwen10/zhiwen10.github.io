@@ -2,9 +2,13 @@
 
 Welcome to YeLab! Please complete the following checklist during your first week. If anything is unclear, please ask PI Zhiwen.
 
+## SMART WiFi
+Account name: SMART-WLAN; password: Ap@26sz#ec
+
 ## Day 1 — Accounts & Access
 
 - [ ] Pick up your badge / confirm your desk / attend administrative training (contact Ms. Li Na)
+
 - [ ] Join the **YeLab Gitee Organization** (`gitee.com/ye-lab`) — see below for details
 - [ ] Join the lab group chat (Feishu / WeChat: contact Zhiwen or Ms. Li)
 - [ ] Join the lab calendar — see [Calendar](calendar.md)
